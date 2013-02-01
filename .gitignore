@@ -46,6 +46,7 @@ ConfigData.xml
 *.suo
 *.user
 *.sln.docstates
+*.vsmdi
 
 ## SVN - Ignore SVN config files if repo is shared between SVN and GitHub
 .svn
