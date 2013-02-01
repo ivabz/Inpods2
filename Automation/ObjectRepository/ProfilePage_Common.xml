@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ObjectRepository>
+  <HomePage>
+  <ProfilePageControls>
+    <RoleType>//div[@id='middle']/table/tbody/tr[5]/td[2]</RoleType>
+  </ProfilePageControls>
+    </HomePage>
+</ObjectRepository>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ObjectRepository>
+  <LoginPage>
+    <!--Forms & form permissions information-->
+    <UserNameTextbox>//input[@id='UserName']</UserNameTextbox>
+    <PasswordTextbox>//input[@id='Password']</PasswordTextbox>
+    <LoginButton>//input[@id='signin_submit']</LoginButton>
+    <SignInButton>//div[@id='topnav' and @class='topnav']/a[@class='signin']</SignInButton>
+  </LoginPage>
+</ObjectRepository>
