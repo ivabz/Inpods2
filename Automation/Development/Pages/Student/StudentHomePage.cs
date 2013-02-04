@@ -10,15 +10,10 @@ namespace Automation.Development.Pages.Student
 {
     public class StudentHomePage : HomeBase
     {
+        /// user controls for Student homepages
         private IWebElement homeTabControl;
-
         private ObjectRepository objectRepository = null;
         private string objectRepositoryFilePath = string.Empty;
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        private StudentHomePage() { }
 
         /// <summary>
         /// Default Parameterized Constructor
@@ -45,8 +40,6 @@ namespace Automation.Development.Pages.Student
         /// </summary>
         private void LocateControls()
         {
-            #region All Home Page Controls 
-            
             /// Home Tab Controls
             bool isHomeTabPresent = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SectionDropDown"]);
             if (!isHomeTabPresent)
@@ -54,7 +47,6 @@ namespace Automation.Development.Pages.Student
                 throw new Exception("Home Tab not found");
             }
             homeTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SectionDropDown"]);
-            #endregion
         }
     }
 }

@@ -139,6 +139,10 @@ namespace Automation.Development.Pages.Common
         ObjectRepository objectRepository = null;
         string objectRepositoryFilePath = string.Empty;
 
+        /// <summary>
+        /// Site navigation page Constructor
+        /// </summary>
+        /// <param name="browser"></param>
         public SiteNavigationMenu(Browser browser): base(browser)
         {
             objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.SiteNav), EnumHelper.OfType(Role.Common));
@@ -366,6 +370,10 @@ namespace Automation.Development.Pages.Common
         #endregion 
 
         #region Helper methods
+
+        /// <summary>
+        ///  Function to ocate user controls
+        /// </summary>
         private void LocateUserOptionControls()
         {
             try
@@ -381,45 +389,45 @@ namespace Automation.Development.Pages.Common
 
                 ProfileLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Profile"]);
 
-                ///// Set password question link
-                //bool isSetPasswordQuestionLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SetPasswordQestionLink"]);
+                /// Set password question link
+                bool isSetPasswordQuestionLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SetPasswordQestionLink"]);
 
-                //if (!isSetPasswordQuestionLinkControl)
-                //{
-                //    throw new Exception("SetPasswordQestionLink");
-                //}
+                if (!isSetPasswordQuestionLinkControl)
+                {
+                    throw new Exception("SetPasswordQestionLink");
+                }
 
-                //SetPasswordQuestionLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SetPasswordQestionLink"]);
+                SetPasswordQuestionLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SetPasswordQestionLink"]);
 
-                ///// Change password link 
-                //bool isChangePasswordLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChangePasswordLink"]);
+                /// Change password link 
+                bool isChangePasswordLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChangePasswordLink"]);
 
-                //if (!isChangePasswordLinkControl)
-                //{
-                //    throw new Exception("ChangePasswordLink");
-                //}
+                if (!isChangePasswordLinkControl)
+                {
+                    throw new Exception("ChangePasswordLink");
+                }
 
-                //ChangePasswordLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChangePasswordLink"]);
+                ChangePasswordLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChangePasswordLink"]);
 
-                ///// Contact suppport link
-                //bool isConatctSupportLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ContactSupportLink"]);
+                /// Contact suppport link
+                bool isConatctSupportLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ContactSupportLink"]);
 
-                //if (!isConatctSupportLinkControl)
-                //{
-                //    throw new Exception("ContactSupportLink");
-                //}
+                if (!isConatctSupportLinkControl)
+                {
+                    throw new Exception("ContactSupportLink");
+                }
 
-                //ConatctSupportLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ContactSupportLink"]);
+                ConatctSupportLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ContactSupportLink"]);
 
-                ///// Log off link
-                //bool isLogOffLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LogoffLink"]);
+                /// Log off link
+                bool isLogOffLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LogoffLink"]);
 
-                //if (!isLogOffLinkControl)
-                //{
-                //    throw new Exception("LogoffLink");
-                //}
+                if (!isLogOffLinkControl)
+                {
+                    throw new Exception("LogoffLink");
+                }
 
-                //LogOffLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["LogoffLink"]);
+                LogOffLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["LogoffLink"]);
             }
             catch (Exception)
             { }

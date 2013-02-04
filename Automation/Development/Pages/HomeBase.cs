@@ -70,7 +70,9 @@ namespace Automation.Development.Pages
             [Description("ChangePasswordPage")]
             ChangePasswordPage = 8,
             [Description("SiteNav")]
-            SiteNav = 9,            
+            SiteNav = 9,
+            [Description("ContactSupport")]
+            ContactSupportPage = 10,   
 
         }
 

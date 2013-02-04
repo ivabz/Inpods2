@@ -85,17 +85,18 @@ namespace Automation.TestScripts
         }
         
         /// <summary>
-        /// Test case to verify the log in Functionlity for Schooltech
+        /// Test case to verify the user log in Functionlity Eg: For role - SchoolTech
         /// </summary>
-        [TestMethod,Description("Test to validate LogIn functionality for Schooltech")]
+        [TestMethod,Description("Test to validate user LogIn functionality - Role - SchoolTech")]
+        [Priority(1)]
         public void LoginTestCase()
-        {
+        {            
             /// Gets test name
             string testScriptName = TestContext.TestName;
 
             try
             {
-                /// Start debug viewer
+                /// Start debug viewer for writting application logs
                 applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
                 applicationLog.StartDebugViewer();
 
@@ -141,11 +142,50 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to verify if create module and corresponding event works fine.
         /// </summary>
-        [Ignore]
         [TestMethod, Description("Test case to verify if create module and corresponding event works fine.")]
         public void CreateAndVerifyEvent()
         {
-            ///Test in Progress
+            /// Gets test name
+            string testScriptName = TestContext.TestName;
+
+            try
+            {
+                /// Start debug viewer for writting application logs
+                applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
+                applicationLog.StartDebugViewer();
+
+                /// Prepare test data file path
+                string testDataFilePath = PrepareTestDataFilePath(testScriptName);
+
+                /// Test Data
+                TestData testData = new TestData(testDataFilePath);
+                string SchooltechUName = (string)testData.TestDataTable["SchooltechUName"];
+                string SchooltechPassword = (string)testData.TestDataTable["SchooltechPassword"];
+
+                /// Create browser instace
+                browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
+                LoginPage loginPage = new LoginPage(browser);
+
+                /// Log in as Schooltech
+                SchoolTechHomePage st_Homepage = loginPage.LoginAsSchoolTech(SchooltechUName, SchooltechPassword, base.applicationURL);
+
+            }
+            catch (Exception exception)
+            {
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
+                Assert.Fail();
+            }
+            finally
+            {
+                /// Close Debug viewer and verify log file
+                applicationLog.StopDebugViewer();
+                bool isExceptionFound = applicationLog.VerifyDebugLogFiles(reportFileDirectory, testScriptName);
+                if (!isExceptionFound)
+                {
+                    WriteLogs(testScriptName, stepNo, "Exception/error found in log file", "INFO", browser);
+                }
+            }
+
         }
 
         /// <summary>

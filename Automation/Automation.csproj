@@ -110,15 +110,22 @@
     <Compile Include="Development\Browsers\Chrome.cs" />
     <Compile Include="Development\Browsers\FireFox.cs" />
     <Compile Include="Development\Browsers\InternetExplorer.cs" />
+    <Compile Include="Development\Pages\Common\ChangePasswordPage.cs" />
+    <Compile Include="Development\Pages\Common\ContactSupportPage.cs" />
+    <Compile Include="Development\Pages\Common\SetPasswordQuestionPage.cs" />
     <Compile Include="Development\Pages\Common\SiteNavigationMenu.cs" />
     <Compile Include="Development\Pages\Common\UserProfilePage.cs" />
     <Compile Include="Development\Pages\HomeBase.cs" />
     <Compile Include="Development\Pages\Common\LoginPage.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Development\Pages\SchoolTech\ConceptsManagementPage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\CourseManagementPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateLessonBySchooltech.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateModuleBySchooltech.cs" />
+    <Compile Include="Development\Pages\SchoolTech\SchoolTechAdminPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechHomePage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\UserManagementPage.cs" />
     <Compile Include="Development\Pages\SessionHandler.cs" />
     <Compile Include="Development\Pages\Student\StudentHomePage.cs" />
     <Compile Include="Development\Pages\Teacher\TeacherHomePage.cs" />
@@ -150,9 +157,12 @@
     <Content Include="ObjectRepository\AssignmentPage_Schooltech.xml" />
     <Content Include="ObjectRepository\AssignmentPage_Student.xml" />
     <Content Include="ObjectRepository\AssignmentPage_Teacher.xml" />
+    <Content Include="ObjectRepository\ChangePasswordPage_Common.xml" />
+    <Content Include="ObjectRepository\ContactSupportPage_Common.xml" />
     <Content Include="ObjectRepository\ProfilePage_Common.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="ObjectRepository\SetPasswordQuestionPage_Common.xml" />
     <Content Include="ObjectRepository\SiteNav_Common.xml" />
     <Content Include="ObjectRepository\HomePage.xml" />
     <Content Include="ObjectRepository\HomePage_Schooltech.xml" />

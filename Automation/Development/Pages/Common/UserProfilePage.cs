@@ -34,10 +34,18 @@ namespace Automation.Development.Pages.Common
         /// </summary>
         /// <param name="browser"></param>
         public UserProfilePage(Browser browser): base(browser)
-        { 
-            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.ProfilePage),EnumHelper.OfType(Role.Common));
-            objectRepository = new ObjectRepository(objectRepositoryFilePath);
-            this.LocateControls();
+        {
+            try
+            {
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.ProfilePage), EnumHelper.OfType(Role.Common));
+                objectRepository = new ObjectRepository(objectRepositoryFilePath);
+                this.LocateControls();
+            }
+            catch (Exception e)
+            {
+                
+                throw new Exception("Error locating" + e.Message);
+            }
         }
 
         #region Locate User Controls
@@ -46,21 +54,14 @@ namespace Automation.Development.Pages.Common
         /// </summary>
         private void LocateControls()
         {
-            try
-            {
-                /// Check Role Type
-                bool isroleType = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["RoleType"]);
+            /// Check Role Type
+            bool isroleType = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["RoleType"]);
 
-                if (!isroleType)
-                {
-                    throw new Exception("RoleType");
-                }
-                roleType = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["RoleType"]);
-            }
-            catch (Exception e)
+            if (!isroleType)
             {
-                throw new Exception("Unable to locate control - " + e.Message);
+                throw new Exception("RoleType");
             }
+            roleType = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["RoleType"]);
         }
         #endregion
     }

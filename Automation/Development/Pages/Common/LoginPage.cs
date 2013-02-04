@@ -14,7 +14,7 @@ namespace Automation.Development.Pages.Common
     /// </summary>
     public class LoginPage : HomeBase
     {
-        //declaring variables to access web elements        
+        //Declaring variables to access web elements        
         private IWebElement signInButtonControl;
         private IWebElement userNameControl;
         private IWebElement passwordControl;

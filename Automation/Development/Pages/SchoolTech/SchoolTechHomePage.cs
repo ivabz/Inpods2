@@ -42,13 +42,20 @@ namespace Automation.Development.Pages.SchoolTech
             menu.LocateSchoolTechMenuControls();            
 
            /// Initiate Schooltech Homepage repository
-           objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.HomePage), EnumHelper.OfType(Role.SchoolTech));
-           objectRepository = new ObjectRepository(objectRepositoryFilePath);
-           this.LocateControls();
+            try
+            {
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.HomePage), EnumHelper.OfType(Role.SchoolTech));
+                objectRepository = new ObjectRepository(objectRepositoryFilePath);
+                this.LocateControls();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error locating" + e.Message);
+            }
         }
 
         /// <summary>
-        /// To locate elements on SchoolTech home page using xpaths      
+        /// Method to locate elements on SchoolTech home page using xpaths      
         /// </summary>
         private void LocateControls()
         {
