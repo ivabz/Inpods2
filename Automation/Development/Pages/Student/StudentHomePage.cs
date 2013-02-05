@@ -25,7 +25,7 @@ namespace Automation.Development.Pages.Student
             /// Initiate object repository
             try
             {
-                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.HomePage), EnumHelper.OfType(Role.SchoolTech));
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.SchoolTech),EnumHelper.OfType(Page.HomePage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
                 this.LocateControls();
             }

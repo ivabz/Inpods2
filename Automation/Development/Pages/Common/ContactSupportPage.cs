@@ -25,7 +25,7 @@ namespace Automation.Development.Pages.Common
         /// </summary>
         public ContactSupportPage(Browser browser) : base (browser)
         {
-            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.ContactSupportPage), EnumHelper.OfType(Role.Common));
+            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.Common),EnumHelper.OfType(Page.ContactSupportPage));
             objectRepository = new ObjectRepository(objectRepositoryFilePath);
         }
     }

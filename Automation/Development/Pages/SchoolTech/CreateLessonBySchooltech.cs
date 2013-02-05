@@ -10,7 +10,7 @@ using System.Threading;
 namespace Automation.Development.Pages
 {
     public class CreateLessonBySchooltech : HomeBase
-    {        
+    {
         private ObjectRepository objectRepository;
         private IWebElement ClickOnLessonLink;
         private IWebElement lessonNameControl;
@@ -69,10 +69,10 @@ namespace Automation.Development.Pages
             {
                 throw new Exception("Module Name Text not found");
             }
-                        
+
             this.lessonNameControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["LessonName"]);
             lessonNameControl.FindElement(By.Id("Name")).Clear();
-            lessonNameControl.SendKeys(lessonName);            
+            lessonNameControl.SendKeys(lessonName);
 
             return new CreateLessonBySchooltech(this.Browser);
         }
@@ -103,7 +103,7 @@ namespace Automation.Development.Pages
                 saveButtonControl.Click();
             }
             catch (Exception)
-            {         }
+            { }
             return new CreateLessonBySchooltech(this.Browser);
         }
 

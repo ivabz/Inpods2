@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace Automation.Development.Pages.SchoolTech
 {
-    public class SchoolTechAdminPage : HomeBase
+    public class SchoolTechAdminPage : SchoolTechNavigationMenu
     {
         /// <summary>
         /// User Management : 
@@ -49,7 +49,7 @@ namespace Automation.Development.Pages.SchoolTech
             /// Initiate Schooltech Homepage repository
             try
             {
-                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.AdminPage), EnumHelper.OfType(Role.SchoolTech));
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.SchoolTech),EnumHelper.OfType(Page.AdminPage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
                 this.LocateControls();
             }

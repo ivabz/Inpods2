@@ -35,7 +35,7 @@ namespace Automation.Development.Pages.Common
             : base(browser)
         {
             /// Initiate object repository
-            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.LoginPage), EnumHelper.OfType(Role.Common));
+            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.Common),EnumHelper.OfType(Page.LoginPage));
             objectRepository = new ObjectRepository(objectRepositoryFilePath);
         }
 

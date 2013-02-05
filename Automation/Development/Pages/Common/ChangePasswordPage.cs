@@ -13,7 +13,7 @@ namespace Automation.Development.Pages.Common
         private IWebElement currentPassField;
 
         /// <summary>
-        /// Current Password field control
+        /// Gets Current Password field control
         /// </summary>
         public IWebElement CurrentPassField
         {
@@ -24,7 +24,7 @@ namespace Automation.Development.Pages.Common
         private IWebElement newPasswordField;
 
         /// <summary>
-        /// New Password field control
+        /// Gets New Password field control
         /// </summary>
         public IWebElement NewPasswordField
         {
@@ -35,7 +35,7 @@ namespace Automation.Development.Pages.Common
         private IWebElement confirmPasswordField;
 
         /// <summary>
-        /// Confirm Password field control
+        /// Gets Confirm Password field control
         /// </summary>
         public IWebElement ConfirmPasswordField
         {
@@ -67,7 +67,7 @@ namespace Automation.Development.Pages.Common
         {
             try
             {
-                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.ChangePasswordPage), EnumHelper.OfType(Role.Common));
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.Common),EnumHelper.OfType(Page.ChangePasswordPage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
                 this.LocateControl();
              }

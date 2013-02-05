@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ObjectRepository>
+  <HomePage>
+    <ManageUserGroup>
+      <ChooseUserField>//select[@id='cbxChooseUser' and @class='valid']</ChooseUserField>
+      <NewPasswordField>//input[@id='txtNewPassword']</NewPasswordField>
+      <ChangePasswordButton>//button[@id='btnChangePassword']</ChangePasswordButton>
+    </ManageUserGroup>
+    <CreateUserGroup>
+      <SelectRoleField>//select[@id='roleName']</SelectRoleField>
+      <UserFirstNameField>//input[@id='UserFirstName']</UserFirstNameField>
+      <UserLastNameField>//input[@id='UserLastName']</UserLastNameField>
+      <UserEmailField>//input[@id='UserName']</UserEmailField>
+      <UserPasswordField>//input[@id='UserPassword']</UserPasswordField>
+      <UserConfirmPasswordField>//input[@id='UserConfirmPassword']</UserConfirmPasswordField>
+      <CreateUserButton>//fieldset[@id='CreateUser']/table/tbody/tr[7]/td[1]/input</CreateUserButton>
+    </CreateUserGroup>
+    <EnrollStudentGroup>
+      <StudentFirstNameField>//input[@id='FirstName']</StudentFirstNameField>
+      <StudentLastNameField>//input[@id='LastName']</StudentLastNameField>
+      <StudentEmailField>//input[@id='StudentName']</StudentEmailField>
+      <StudentPasswordField>//input[@id='Password']</StudentPasswordField>
+      <StudentConfirmPasswordField>//input[@id='ConfirmPassword']</StudentConfirmPasswordField>
+      <CreateStudentButton>//fieldset[@id='CreateStudent']/table/tbody/tr[6]/td[1]/input  </CreateStudentButton>
+    </EnrollStudentGroup>
+    <EnrollStudentsGroup>
+      <EnrollButton></EnrollButton>
+    </EnrollStudentsGroup>
+    <RelationshipGroup>
+      <ChooseParentField></ChooseParentField>
+      <ChooseStudentField></ChooseStudentField>
+      <AssociateButton></AssociateButton>
+    </RelationshipGroup>
+  </HomePage>
+</ObjectRepository>

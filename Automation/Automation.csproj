@@ -121,10 +121,13 @@
     </Compile>
     <Compile Include="Development\Pages\SchoolTech\ConceptsManagementPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\CourseManagementPage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\CreateCoursePage.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateLessonBySchooltech.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateModuleBySchooltech.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechAdminPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechHomePage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\SchoolTechNavigationMenu.cs" />
+    <Compile Include="Development\Pages\SchoolTech\CreateSemesterPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\UserManagementPage.cs" />
     <Compile Include="Development\Pages\SessionHandler.cs" />
     <Compile Include="Development\Pages\Student\StudentHomePage.cs" />
@@ -152,33 +155,39 @@
     <None Include="Test Data Index\AutoITScripts\UploadFileScriptError.au3" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ObjectRepository\AdminPage_Schooltech.xml" />
-    <Content Include="ObjectRepository\AdminPage_Teacher.xml" />
-    <Content Include="ObjectRepository\AssignmentPage_Schooltech.xml" />
-    <Content Include="ObjectRepository\AssignmentPage_Student.xml" />
-    <Content Include="ObjectRepository\AssignmentPage_Teacher.xml" />
-    <Content Include="ObjectRepository\ChangePasswordPage_Common.xml" />
-    <Content Include="ObjectRepository\ContactSupportPage_Common.xml" />
-    <Content Include="ObjectRepository\ProfilePage_Common.xml">
+    <Content Include="ObjectRepository\CreateCoursePage.xml" />
+    <Content Include="ObjectRepository\Schooltech_AdminPage.xml" />
+    <Content Include="ObjectRepository\Schooltech_ConceptManagementPage.xml" />
+    <Content Include="ObjectRepository\Schooltech_CourseManagementPage.xml" />
+    <Content Include="ObjectRepository\Schooltech_CreateSemesterPage.xml" />
+    <Content Include="ObjectRepository\Schooltech_UserManagementPage.xml" />
+    <Content Include="ObjectRepository\Teacher_AdminPage.xml" />
+    <Content Include="ObjectRepository\Schooltech_AssignmentPage.xml" />
+    <Content Include="ObjectRepository\Student_AssignmentPage.xml" />
+    <Content Include="ObjectRepository\Teacher_AssignmentPage.xml" />
+    <Content Include="ObjectRepository\Common_ChangePasswordPage.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ObjectRepository\Common_ContactSupportPage.xml" />
+    <Content Include="ObjectRepository\Common_ProfilePage.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ObjectRepository\SetPasswordQuestionPage_Common.xml" />
-    <Content Include="ObjectRepository\SiteNav_Common.xml" />
-    <Content Include="ObjectRepository\HomePage.xml" />
-    <Content Include="ObjectRepository\HomePage_Schooltech.xml" />
-    <Content Include="ObjectRepository\HomePage_Student.xml" />
-    <Content Include="ObjectRepository\HomePage_Teacher.xml" />
-    <Content Include="ObjectRepository\LessonPage_Schooltech.xml">
+    <Content Include="ObjectRepository\Common_SetPasswordQuestionPage.xml" />
+    <Content Include="ObjectRepository\Common_SiteNavPage.xml" />
+    <Content Include="ObjectRepository\Schooltech_HomePage.xml" />
+    <Content Include="ObjectRepository\Student_HomePage.xml" />
+    <Content Include="ObjectRepository\Teacher_HomePage.xml" />
+    <Content Include="ObjectRepository\Schooltech_LessonPage.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ObjectRepository\LessonPage_Student.xml" />
-    <Content Include="ObjectRepository\LessonPage_Teacher.xml" />
-    <Content Include="ObjectRepository\LoginPage_Common.xml">
+    <Content Include="ObjectRepository\Student_LessonPage.xml" />
+    <Content Include="ObjectRepository\Teacher_LessonPage.xml" />
+    <Content Include="ObjectRepository\Common_LoginPage.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ObjectRepository\ReportPage_Schooltech.xml" />
-    <Content Include="ObjectRepository\ReportPage_Student.xml" />
-    <Content Include="ObjectRepository\ReportPage_Teacher.xml" />
+    <Content Include="ObjectRepository\Schooltech_ReportPage.xml" />
+    <Content Include="ObjectRepository\Student_ReportPage.xml" />
+    <Content Include="ObjectRepository\Teacher_ReportPage.xml" />
     <Content Include="Test Data Index\AutoITScripts\InternetExplorerStopped.exe" />
     <Content Include="Test Data Index\AutoITScripts\QTAgentApplicationErrorHandler.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

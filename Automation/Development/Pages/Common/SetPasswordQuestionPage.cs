@@ -64,7 +64,7 @@ namespace Automation.Development.Pages.Common
         {
             try
             {
-                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.SetPaswordQuestionPage), EnumHelper.OfType(Role.Common));
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath( EnumHelper.OfType(Role.Common),EnumHelper.OfType(Page.SetPaswordQuestionPage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
                 this.LocateControls();
             }

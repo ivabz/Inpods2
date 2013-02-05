@@ -7,7 +7,7 @@ using Automation.Development.Pages.Common;
 
 namespace Automation.Development.Pages.SchoolTech
 {
-    public class SchoolTechHomePage : HomeBase
+    public class SchoolTechHomePage : SchoolTechNavigationMenu
     {
         /// <summary>
         /// SchoolTech Object Repository
@@ -18,18 +18,7 @@ namespace Automation.Development.Pages.SchoolTech
         /// school tech Object repository path
         /// </summary>
         string objectRepositoryFilePath = string.Empty;
-
-        /// <summary>
-        /// Site Navigation menu
-        /// </summary>
-        SiteNavigationMenu menu = null;
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        private SchoolTechHomePage()
-        { }
-
+       
         /// <summary>
         /// Default parameterised constructor
         /// </summary>
@@ -37,14 +26,11 @@ namespace Automation.Development.Pages.SchoolTech
         public SchoolTechHomePage(Browser browser)
             : base(browser)
         {
-            /// Initialize School tech Site navigation menu
-            menu = new SiteNavigationMenu(browser);
-            menu.LocateSchoolTechMenuControls();            
-
-           /// Initiate Schooltech Homepage repository
+            
+            /// Initiate Schooltech Homepage repository
             try
             {
-                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.HomePage), EnumHelper.OfType(Role.SchoolTech));
+                objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.SchoolTech),EnumHelper.OfType(Page.HomePage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
                 this.LocateControls();
             }
@@ -68,7 +54,7 @@ namespace Automation.Development.Pages.SchoolTech
         /// </summary>
         public bool ValidateSchoolTechUserProfile()
         {
-            UserProfilePage profile = menu.GoToUserProfile();
+            UserProfilePage profile = SchooltechMenu.GoToUserProfile();
             return ((profile.RoleType.Text.Equals("SchoolTech")) ? true : false);
         }
     }

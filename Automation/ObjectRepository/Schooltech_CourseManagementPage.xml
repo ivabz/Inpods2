@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ObjectRepository>
+  <HomePage>
+    <CreateSemesterModule>
+      <CreateSemesterButton>//div[@id='middle']/a[1]</CreateSemesterButton>
+    </CreateSemesterModule>
+    <CreateDepartmentModule>
+      <DepartmentNameField>//input[@id='DepartmentName' and @class='required']</DepartmentNameField>
+      <DepartmentDescriptionField>//input[@id='DepartmentDescription' and @class='required']</DepartmentDescriptionField>
+      <CreateDepartmentButton>//form[@id='CreateDepartmentForm']/table/tbody/tr[3]/td/input</CreateDepartmentButton>
+    </CreateDepartmentModule>
+    <CreateSubjectModule>
+      <SelectDepartmentField>//select[@id='DepartmentId1']</SelectDepartmentField>
+      <SubjectNameField>//input[@id='SubjectName' and @class='required']</SubjectNameField>
+      <SubjectDescriptionField>//input[@id='SubjectDescription' and @class='required']</SubjectDescriptionField>
+      <CreateSubjectField>//div[@id='middle']/form[2]/table/tbody/tr[4]/td/input</CreateSubjectField>
+    </CreateSubjectModule>
+    <CreateCourseModule>
+      <CreateCourseButton>//div[@id='middle']/a[2]</CreateCourseButton>
+    </CreateCourseModule>
+    <CreateSectionModule>
+      <SelectCourseField>//select[@id='CourseId']</SelectCourseField>
+      <SelectTeacherField>//select[@id='ProviderUserKey']</SelectTeacherField>
+      <SectionNameField>//input[@id='SectionName' and @class='required']</SectionNameField>
+      <MeetingDaysList>//fieldset[@id='Section']/table/tbody/tr[5]/td/input</MeetingDaysList>
+    </CreateSectionModule>
+    <DownloadSectionDataModule>
+      <SectionDownloadButton>//div[@id='middle']/form[4]/table/tbody/tr[2]/td/input</SectionDownloadButton>
+    </DownloadSectionDataModule>
+    <UsingCSVModule>
+      <ChooseFileButton>//input[@id='sectionDefn']</ChooseFileButton>
+      <CreateSectionButton>//div[@id='middle']/form[5]/table/tbody/tr[2]/td/input</CreateSectionButton>
+    </UsingCSVModule>
+    <QuestionBankModule>
+      <ManageQuestionBankLinkField>//div[@id='middle']/table/tbody/tr/td/b/a</ManageQuestionBankLinkField>
+    </QuestionBankModule>
+  </HomePage>
+</ObjectRepository>

@@ -51,17 +51,17 @@ namespace Automation.Development.Pages
         /// </summary>
         public enum Page
         {
-            [DescriptionAttribute("LoginPage")]
+            [Description("LoginPage")]
             LoginPage = 0,
-            [DescriptionAttribute("HomePage")]
+            [Description("HomePage")]
             HomePage = 1,
-            [DescriptionAttribute("AdminPage")]
+            [Description("AdminPage")]
             AdminPage = 2,
-            [DescriptionAttribute("LessonPage")]
+            [Description("LessonPage")]
             LessonPage = 3,
-            [DescriptionAttribute("AssignmentPage")]
+            [Description("AssignmentPage")]
             AssignmentPage = 4,
-            [DescriptionAttribute("ReportPage")]
+            [Description("ReportPage")]
             ReportPage = 5,
             [Description("ProfilePage")]
             ProfilePage = 6,
@@ -69,11 +69,22 @@ namespace Automation.Development.Pages
             SetPaswordQuestionPage = 7,
             [Description("ChangePasswordPage")]
             ChangePasswordPage = 8,
-            [Description("SiteNav")]
-            SiteNav = 9,
-            [Description("ContactSupport")]
-            ContactSupportPage = 10,   
+            [Description("SiteNavPage")]
+            SiteNavPage = 9,
+            [Description("ContactSupportPage")]
+            ContactSupportPage = 10,
+            [Description("UserManagementPage")]
+            UserManagementPage = 11,
+            [Description("CourseManagementPage")]
+            CourseManagementPage = 12,
+            [Description("ConceptManagementPage")]
+            ConceptManagementPage = 13,
+            [Description("CreateSemesterPage")]
+            CreateSemesterPage = 14,
+            [Description("CreateCoursePage")]
+            CreateCoursePage = 15
 
+        
         }
 
         public Browser Browser { get; private set; }

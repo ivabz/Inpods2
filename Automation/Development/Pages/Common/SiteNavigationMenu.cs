@@ -145,7 +145,7 @@ namespace Automation.Development.Pages.Common
         /// <param name="browser"></param>
         public SiteNavigationMenu(Browser browser): base(browser)
         {
-            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Page.SiteNav), EnumHelper.OfType(Role.Common));
+            objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.Common),EnumHelper.OfType(Page.SiteNavPage));
             objectRepository = new ObjectRepository(objectRepositoryFilePath);
         }
 
@@ -155,7 +155,6 @@ namespace Automation.Development.Pages.Common
         /// </summary>
         public void LocateSchoolTechMenuControls()
         {
-
             try
             {
                 /// Home Tab
@@ -230,7 +229,6 @@ namespace Automation.Development.Pages.Common
         /// </summary>
         public void LocateTeacherMenuControls()
         {
-
             /// Home Tab
             bool isHomeTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["Home"]);
 
@@ -358,10 +356,9 @@ namespace Automation.Development.Pages.Common
             }
 
             this.UserOptionControl.Click();
-
             this.LocateUserOptionControls();
-
-
+            
+            /// Click on Profile link
             ProfileLinkControl.Click();
 
             /// return profiles page
