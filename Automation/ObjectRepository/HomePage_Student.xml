@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ObjectRepository>
-  <HomePage>
-    <!--Forms & form permissions information-->
-    <SectionDropDown>//input[@id='sectionId']</SectionDropDown>
-    <NewLateAssignment>//div[@class='homepage_section_heading']/a</NewLateAssignment>
-    <AssignmentTableId>//input[@id='studentRecentAssignmentTable']</AssignmentTableId>
-  </HomePage>
-</ObjectRepository>

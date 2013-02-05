@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ObjectRepository>
-  <HomePage>
-    <ManageUserControl>//div[@id='middle']/table/tbody/tr/td[1]/a</ManageUserControl>
-    <ManageCourseControl>//div[@id='middle']/table/tbody/tr/td[2]/a</ManageCourseControl>
-    <ManageConceptsControl>//div[@id='middle']/table/tbody/tr/td[3]/a</ManageConceptsControl>
-  </HomePage>
-</ObjectRepository>
