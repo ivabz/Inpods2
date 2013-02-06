@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ObjectRepository>
+  <HomePage>
+    <NewInstituteLink>//div[@id='middle']/table/tbody/tr/td[1]/a</NewInstituteLink>
+    <ManageUserLink>//div[@id='middle']/table/tbody/tr/td[2]/a</ManageUserLink>
+    <ChooseFileButton>//input[@id='classicInstDefn']</ChooseFileButton>
+    <CreateInstituteButton>//div[@id='middle']/div/form/table/tbody/tr[2]/td[1]/input</CreateInstituteButton>
+  </HomePage>
+</ObjectRepository>

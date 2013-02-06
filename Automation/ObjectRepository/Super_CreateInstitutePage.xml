@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ObjectRepository>
+  <HomePage>
+    <CreateTechAdminModule>
+      <FirstNameField>//input[@id='UserFirstName']</FirstNameField>
+      <LastNameField>//input[@id='UserLastName']</LastNameField>
+      <EmailField>//input[@id='UserName']</EmailField>
+      <PasswordField>//input[@id='UserPassword']</PasswordField>
+      <ConfirmPasswordField>//input[@id='UserConfirmPassword']</ConfirmPasswordField>
+      <CreateTechAdminButton>//fieldset[@id='CreateUser']/table/tbody/tr[7]/td[1]/input</CreateTechAdminButton>
+    </CreateTechAdminModule>
+    <InstituteCleanUpModule>
+      <InstituteCleanupNameField>//input[@id='DeleteInstName' and @class='required']</InstituteCleanupNameField>
+      <DeleteInstituteButton>//div[@id='middle']/div[1]/form/table/tbody/tr[2]/td/input</DeleteInstituteButton>
+    </InstituteCleanUpModule>
+    <AddNewInstituteModule>
+      <InstituteNameField>//input[@id='InstName' and @class='required']</InstituteNameField>
+      <InstituteDescriptionField>//input[@id='InstDescription' and @class='required']</InstituteDescriptionField>
+      <InstituteShortNameField>//input[@id='InstShortName' and @class='required']</InstituteShortNameField>
+      <LogoChooseFileButton>//input[@id='instLogo']</LogoChooseFileButton>
+      <SchoolTechSelectField>//select[@id='UserName']</SchoolTechSelectField>
+      <SelectTimeZoneField>//select[@id='ChooseTimezone']</SelectTimeZoneField>
+      <SelectPasswordResetField>//select[@id='PasswordReset']</SelectPasswordResetField>
+      <CreateInstituteButton>//form[@id='addInstitute']/table/tbody/tr[9]/td/input</CreateInstituteButton>
+    </AddNewInstituteModule>
+    <AddnewInstituteUsingCSVModule>
+      <ChooseCSVButton>//input[@id='instDefn']</ChooseCSVButton>
+      <ChooseLogoFileButton>//input[@id='instLogo']</ChooseLogoFileButton>
+    </AddnewInstituteUsingCSVModule>
+  </HomePage>
+</ObjectRepository>
+

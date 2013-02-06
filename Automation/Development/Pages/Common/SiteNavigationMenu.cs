@@ -135,8 +135,7 @@ namespace Automation.Development.Pages.Common
         }
         #endregion
 
-
-        ObjectRepository objectRepository = null;
+        public ObjectRepository objectRepository { get; private set; }
         string objectRepositoryFilePath = string.Empty;
 
         /// <summary>
@@ -151,6 +150,52 @@ namespace Automation.Development.Pages.Common
 
         #region User control initialization functions
         /// <summary>
+        /// To locate Super menu controls
+        /// </summary>
+        public void LocateSuperMenuControls()
+        {
+            /// Home Tab
+            bool ishomeTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SuperHome"]);
+
+            if (!ishomeTabControl)
+            {
+                throw new Exception("Home Tab");
+            }
+
+            HomeTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SuperHome"]);
+
+            /// Admin Tab
+            bool isadminTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SuperAdmin"]);
+
+            if (!isadminTabControl)
+            {
+                throw new Exception("Admin Tab");
+            }
+
+            AdminTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SuperAdmin"]);
+
+            /// Reports Tab
+            bool isreportTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SuperReports"]);
+
+            if (!isreportTabControl)
+            {
+                throw new Exception("Reports Tab");
+            }
+
+            ReportTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SuperReports"]);
+
+            // User Options tab
+            bool isUserOptionControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SuperUserOption"]);
+
+            if (!isUserOptionControl)
+            {
+                throw new Exception("Super Tab");
+            }
+
+            UserOptionControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SuperUserOption"]);
+        }
+        
+        /// <summary>
         /// To locate Schooltech Menu controls
         /// </summary>
         public void LocateSchoolTechMenuControls()
@@ -158,64 +203,64 @@ namespace Automation.Development.Pages.Common
             try
             {
                 /// Home Tab
-                bool ishomeTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["Home"]);
+                bool ishomeTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchooltechHome"]);
 
                 if (!ishomeTabControl)
                 {
                     throw new Exception("Home Tab");
                 }
 
-                HomeTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Home"]);
+                HomeTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechHome"]);
 
                 /// Admin Tab
-                bool isadminTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["Admin"]);
+                bool isadminTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchooltechAdmin"]);
 
                 if (!isadminTabControl)
                 {
                     throw new Exception("Admin Tab");
                 }
 
-                AdminTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Admin"]);
+                AdminTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechAdmin"]);
 
                 /// lessons Tab
-                bool islessonTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["Lessons"]);
+                bool islessonTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchooltechLessons"]);
 
                 if (!islessonTabControl)
                 {
                     throw new Exception("Lessons Tab");
                 }
 
-                LessonTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Lessons"]);
+                LessonTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechLessons"]);
 
                 /// Assignment Tab
-                bool isassignmentTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["Assignments"]);
+                bool isassignmentTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchooltechAssignments"]);
 
                 if (!isassignmentTabControl)
                 {
                     throw new Exception("Assignments Tab");
                 }
 
-                AssignmentTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Assignments"]);
+                AssignmentTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechAssignments"]);
 
                 /// Reports Tab
-                bool isreportTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["Reports"]);
+                bool isreportTabControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchooltechReports"]);
 
                 if (!isreportTabControl)
                 {
                     throw new Exception("Reports Tab");
                 }
 
-                ReportTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Reports"]);
+                ReportTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechReports"]);
 
                 // User Options tab
-                bool isUserOptionControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserOption"]);
+                bool isUserOptionControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchooltechUserOption"]);
 
                 if (!isUserOptionControl)
                 {
                     throw new Exception("UserOption Tab");
                 }
 
-                UserOptionControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["UserOption"]);
+                UserOptionControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechUserOption"]);
             }
             catch (Exception exception)
             {
@@ -341,10 +386,14 @@ namespace Automation.Development.Pages.Common
             this.LocateUserOptionControls();
         }
 
-        /// And menu controls for every other roles goes here
+        //// And menu controls for every other roles goes here
         #endregion 
 
         #region Public functions
+        /// <summary>
+        /// Method to go to User Profile page
+        /// </summary>
+        /// <returns></returns>
         public UserProfilePage GoToUserProfile()
         {
             /// Click User Options tab
@@ -357,12 +406,41 @@ namespace Automation.Development.Pages.Common
 
             this.UserOptionControl.Click();
             this.LocateUserOptionControls();
-            
+
             /// Click on Profile link
             ProfileLinkControl.Click();
 
             /// return profiles page
             return new UserProfilePage(this.Browser);
+        }
+
+        /// <summary>
+        /// Function to log out from current page
+        /// </summary>
+        /// <returns></returns>
+        public bool LogOut()
+        {
+            try
+            {
+                /// Click User Options tab
+                bool isUserOptionControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SuperUserOption"]);
+
+                if (!isUserOptionControl)
+                {
+                    throw new Exception("UserOption Tab");
+                }
+
+                UserOptionControl.Click();
+                LocateUserOptionControls();
+
+                /// Click on Profile link
+                LogOffLinkControl.Click();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion 
 

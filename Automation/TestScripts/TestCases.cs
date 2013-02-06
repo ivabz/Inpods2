@@ -4,6 +4,7 @@ using Automation.Development.Browsers;
 using Automation.Development.Pages;
 using Automation.Development.Pages.Common;
 using Automation.Development.Pages.SchoolTech;
+using Automation.Development.Pages.Super;
 using Automation.TestScripts;
 using System.IO;
 
@@ -87,8 +88,8 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to verify the user log in Functionlity Eg: For role - SchoolTech
         /// </summary>
-        [TestMethod,Description("Test to validate user LogIn functionality - Role - SchoolTech")]
-        [Priority(1)]
+        [TestMethod,Description("BVT -Test to validate user LogIn functionality - Role - SchoolTech")]
+        [Priority(0)]
         public void LoginTestCase()
         {            
             /// Gets test name
@@ -105,15 +106,15 @@ namespace Automation.TestScripts
 
                 /// Test Data
                 TestData testData = new TestData(testDataFilePath);
-                string SchooltechUName = (string)testData.TestDataTable["SchooltechUName"];
-                string SchooltechPassword = (string)testData.TestDataTable["SchooltechPassword"];
+                string schooltechUName = (string)testData.TestDataTable["SchooltechUName"];
+                string schooltechPassword = (string)testData.TestDataTable["SchooltechPassword"];
 
                 /// Create browser instace
                 browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
                 LoginPage loginPage = new LoginPage(browser);
                 
                 /// Log in as Schooltech
-                SchoolTechHomePage st_Homepage = loginPage.LoginAsSchoolTech(SchooltechUName, SchooltechPassword, base.applicationURL);
+                SchoolTechHomePage st_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
                 Assert.IsNotNull(st_Homepage, "Failed to login to InPods application as Schooltech");
                 WriteLogs(testScriptName, stepNo, "Login to InPods Application as Schooltech", "Pass", browser);
                 stepNo++;
@@ -142,6 +143,7 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to verify if create module and corresponding event works fine.
         /// </summary>
+        [Ignore]
         [TestMethod, Description("Test case to verify if create module and corresponding event works fine.")]
         public void CreateAndVerifyEvent()
         {
@@ -159,15 +161,15 @@ namespace Automation.TestScripts
 
                 /// Test Data
                 TestData testData = new TestData(testDataFilePath);
-                string SchooltechUName = (string)testData.TestDataTable["SchooltechUName"];
-                string SchooltechPassword = (string)testData.TestDataTable["SchooltechPassword"];
+                string schooltechUName = (string)testData.TestDataTable["SchooltechUName"];
+                string schooltechPassword = (string)testData.TestDataTable["SchooltechPassword"];
 
                 /// Create browser instace
                 browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
                 LoginPage loginPage = new LoginPage(browser);
 
                 /// Log in as Schooltech
-                SchoolTechHomePage st_Homepage = loginPage.LoginAsSchoolTech(SchooltechUName, SchooltechPassword, base.applicationURL);
+                SchoolTechHomePage st_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
 
             }
             catch (Exception exception)
@@ -186,6 +188,94 @@ namespace Automation.TestScripts
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Test case to create and verify Techadmin and Institute creation manually (i.e Not through CSV)
+        /// </summary>
+        [TestMethod, Description("BVT - Test case to create and verify Techadmin and Institute creation manually")]
+        [Priority(0)]
+        public void CreateTechadminAndInstituteManually()
+        {
+            /// Gets test name
+            string testScriptName = TestContext.TestName;
+
+            try
+            {
+                /// Start debug viewer for writting application logs
+                applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
+                applicationLog.StartDebugViewer();
+
+                /// Prepare test data file path
+                string testDataFilePath = PrepareTestDataFilePath(testScriptName);
+
+                /// Test Data
+                TestData testData = new TestData(testDataFilePath);
+                string superUName = (string)testData.TestDataTable["SuperUName"];
+                string superPassword = (string)testData.TestDataTable["SuperPassword"];
+                string firstName = (string)testData.TestDataTable["FirstName"];
+                string lastName = (string)testData.TestDataTable["LastName"];
+                string email  = (string)testData.TestDataTable["Email"];
+                string password = (string)testData.TestDataTable["Password"];
+                string instituteName = (string)testData.TestDataTable["InstituteName"];
+                string instituteDescription = (string)testData.TestDataTable["InstituteDescription"];
+                string instituteShortName= (string)testData.TestDataTable["InstituteShortName"];
+                string logoFilePath= testDataFilePath + (string)testData.TestDataTable["LogoFileName"];
+                string schoolTechName= (string)testData.TestDataTable["SchoolTechName"];
+                string timeZone= (string)testData.TestDataTable["TimeZone"];
+                string passwordReset= (string)testData.TestDataTable["PasswordReset"];
+
+                /// Create browser instace
+                browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
+                LoginPage loginPage = new LoginPage(browser);
+
+                /// Log in as Super
+                SuperHomePage s_Homepage = loginPage.LoginAsSuper(superUName, superPassword, base.applicationURL);
+                Assert.IsNotNull(s_Homepage, "Failed to login to InPods application as Super");
+                WriteLogs(testScriptName, stepNo, "Login to InPods Application as Super", "Pass", browser);
+                stepNo++;
+
+                /// Go to Admin Page
+                SuperAdminPage admin = s_Homepage.GotoAdminPage();
+                Assert.IsNotNull(admin, "Failed to navigate to super admin page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Admin page", "Pass", browser);
+                stepNo++;
+
+                /// Click on CreateInstitute Link
+                CreateInstitutePage newInstitute = admin.GoToCreateInstitutePage();
+                Assert.IsNotNull(admin, "Failed to navigate to Create Institute Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to CreateNewInstitutePage", "Pass", browser);
+                stepNo++;
+
+                /// Create TechAdmin as schooltech
+                Assert.IsNotNull(newInstitute.CreateTechadmin(firstName, lastName, email, password), "Failed to create tech admin");
+                WriteLogs(testScriptName, stepNo, "Create TechAdmin", "Pass", browser);
+                stepNo++;
+
+                /// Add new institute
+                Assert.IsNotNull(newInstitute.AddNewInstitute(instituteName, instituteDescription, instituteShortName, logoFilePath, schoolTechName, timeZone, passwordReset), "Failed to create new institute");
+                WriteLogs(testScriptName, stepNo, "Create New institute", "Pass", browser);
+                stepNo++;
+
+                /// LogOff
+                Assert.IsNotNull(newInstitute.SuperMenu.LogOut(), "Failed to Log out");
+                WriteLogs(testScriptName, stepNo, "LogOff", "Pass", browser);
+            }
+            catch (Exception exception)
+            {
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
+                Assert.Fail();
+            }
+            finally
+            {
+                /// Close Debug viewer and verify log file
+                applicationLog.StopDebugViewer();
+                bool isExceptionFound = applicationLog.VerifyDebugLogFiles(reportFileDirectory, testScriptName);
+                if (!isExceptionFound)
+                {
+                    WriteLogs(testScriptName, stepNo, "Exception/error found in log file", "INFO", browser);
+                }
+            }
         }
 
         /// <summary>

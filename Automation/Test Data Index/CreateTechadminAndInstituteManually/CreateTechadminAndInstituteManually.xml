@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+  <CreateTechadminAndInstituteManually>
+    <SuperCredentials>
+      <SuperUName>super</SuperUName>
+      <SuperPassword>superadmin</SuperPassword>
+    </SuperCredentials>
+    <CreateTechAdminModule>
+      <FirstName>FirstTestData</FirstName>
+      <LastName>LastTestData</LastName>
+      <Email>TestData4@afourtech.com</Email>
+      <Password>TestDataPassword</Password>
+      <ConfirmPassword>TestDataPassword</ConfirmPassword>
+    </CreateTechAdminModule>
+    <AddNewInstituteModule>
+      <InstituteName>AFourtechTestData4</InstituteName>
+      <InstituteDescription>AfourTech Test data for Create institute</InstituteDescription>
+      <InstituteShortName>AFour</InstituteShortName>
+      <LogoFileName>Capture.PNG</LogoFileName>
+      <SchoolTechName>TestData4@afourtech.com</SchoolTechName>
+      <TimeZone>(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</TimeZone>
+      <PasswordReset>Student</PasswordReset>
+    </AddNewInstituteModule>
+  </CreateTechadminAndInstituteManually>
+</TestData>

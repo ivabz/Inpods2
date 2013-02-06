@@ -131,6 +131,11 @@
     <Compile Include="Development\Pages\SchoolTech\UserManagementPage.cs" />
     <Compile Include="Development\Pages\SessionHandler.cs" />
     <Compile Include="Development\Pages\Student\StudentHomePage.cs" />
+    <Compile Include="Development\Pages\Super\CreateInstitutePage.cs" />
+    <Compile Include="Development\Pages\Super\SuperAdminPage.cs" />
+    <Compile Include="Development\Pages\Super\SuperHomePage.cs" />
+    <Compile Include="Development\Pages\Super\SuperNavigationMenu.cs" />
+    <Compile Include="Development\Pages\Super\UserManagementPage.cs" />
     <Compile Include="Development\Pages\Teacher\TeacherHomePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestScripts\TestCases.cs" />
@@ -161,6 +166,9 @@
     <Content Include="ObjectRepository\Schooltech_CourseManagementPage.xml" />
     <Content Include="ObjectRepository\Schooltech_CreateSemesterPage.xml" />
     <Content Include="ObjectRepository\Schooltech_UserManagementPage.xml" />
+    <Content Include="ObjectRepository\Super_CreateInstitutePage.xml" />
+    <Content Include="ObjectRepository\Super_AdminPage.xml" />
+    <Content Include="ObjectRepository\Super_HomePage.xml" />
     <Content Include="ObjectRepository\Teacher_AdminPage.xml" />
     <Content Include="ObjectRepository\Schooltech_AssignmentPage.xml" />
     <Content Include="ObjectRepository\Student_AssignmentPage.xml" />
@@ -198,6 +206,8 @@
     <Content Include="Test Data Index\AutoITScripts\UploadFileScriptError.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Test Data Index\CreateTechadminAndInstituteManually\Capture.PNG" />
+    <Content Include="Test Data Index\CreateTechadminAndInstituteManually\CreateTechadminAndInstituteManually.xml" />
     <Content Include="Test Data Index\Generic Data\Dbgview.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -212,7 +222,6 @@
   <ItemGroup>
     <Folder Include="Development\Pages\Admin\" />
     <Folder Include="Development\Pages\Parent\" />
-    <Folder Include="Development\Pages\Super\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

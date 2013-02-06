@@ -6,6 +6,7 @@ using Automation.TestScripts;
 using Automation.Development.Pages.SchoolTech;
 using Automation.Development.Pages.Student;
 using Automation.Development.Pages.Teacher;
+using Automation.Development.Pages.Super;
 
 namespace Automation.Development.Pages.Common
 {
@@ -40,6 +41,27 @@ namespace Automation.Development.Pages.Common
         }
 
         #region Functions for login to Application
+        /// <summary>
+        /// Method to log in as Super user
+        /// </summary>
+        /// <param name="userName">Super User name</param>
+        /// <param name="password">Super user password</param>
+        /// <param name="loginPageUrl">LoginPageURL</param>
+        /// <returns>Super user homepage</returns>
+        public SuperHomePage LoginAsSuper(string userName, string password, string loginPageUrl)
+        {
+            try
+            {
+                // Perform Sign in
+                SignIn(userName, password, loginPageUrl);
+                return new SuperHomePage(this.Browser);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in login " + ex.Message);
+            }
+ 
+        }
         /// <summary>
         /// Function to log in as schoolTech
         /// </summary>

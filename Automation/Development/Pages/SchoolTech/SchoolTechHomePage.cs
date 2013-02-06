@@ -40,6 +40,7 @@ namespace Automation.Development.Pages.SchoolTech
             }
         }
 
+        #region Locate control methods for SchoolTech home page
         /// <summary>
         /// Method to locate elements on SchoolTech home page using xpaths      
         /// </summary>
@@ -47,8 +48,10 @@ namespace Automation.Development.Pages.SchoolTech
         {
             /// TODO: Any other user specific controls can be initialize here.
             /// Eg:  Announcement , section Schedule
-        }
-        
+        } 
+        #endregion
+
+        #region Public methods
         /// <summary>
         /// Method to go to user profile tab
         /// </summary>
@@ -56,6 +59,7 @@ namespace Automation.Development.Pages.SchoolTech
         {
             UserProfilePage profile = SchooltechMenu.GoToUserProfile();
             return ((profile.RoleType.Text.Equals("SchoolTech")) ? true : false);
-        }
+        } 
+        #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TestData>
-  <TestCaseLogin>
+  <LoginTestCase>
     <!--Forms & form permissions information-->
     <SchooltechUName>schooltech@afourtech.com</SchooltechUName>
     <SchooltechPassword>techone</SchooltechPassword>
@@ -10,5 +10,5 @@
     
     <TeacherUName>Virtual Machine</TeacherUName>
     <TeacherPassword>Arsys</TeacherPassword>
-  </TestCaseLogin>
+  </LoginTestCase>
 </TestData>

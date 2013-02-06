@@ -44,6 +44,8 @@ namespace Automation.Development.Pages
             Parent = 4,
             [DescriptionAttribute("Admin")]
             Admin = 5,
+            [DescriptionAttribute("Super")]
+            Super = 6,
         }
 
         /// <summary>
@@ -82,7 +84,9 @@ namespace Automation.Development.Pages
             [Description("CreateSemesterPage")]
             CreateSemesterPage = 14,
             [Description("CreateCoursePage")]
-            CreateCoursePage = 15
+            CreateCoursePage = 15,
+            [Description("CreateInstitutePage")]
+            CreateInstitutePage = 16
 
         
         }

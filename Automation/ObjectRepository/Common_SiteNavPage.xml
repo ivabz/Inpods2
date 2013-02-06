@@ -2,19 +2,32 @@
 <ObjectRepository>
   <HomePage>
     <MenuTabs>
-      <Home>//ul[@id='menu']/li[1]/a</Home>
-      <Admin>//ul[@id='menu']/li[2]/a</Admin>
-      <Lessons>//ul[@id='menu']/li[3]/a</Lessons>
-      <Assignments>//ul[@id='menu']/li[4]/a</Assignments>
-      <Reports>//ul[@id='menu']/li[5]/a</Reports>
-      <UserOption>//div[@id='topnav' and @class='topnav']/span[2]/a</UserOption>
-    </MenuTabs>
+      <SchoolTech>
+      <SchooltechHome>//ul[@id='menu']/li[1]/a</SchooltechHome>
+      <SchooltechAdmin>//ul[@id='menu']/li[2]/a</SchooltechAdmin>
+      <SchooltechLessons>//ul[@id='menu']/li[3]/a</SchooltechLessons>
+      <SchooltechAssignments>//ul[@id='menu']/li[4]/a</SchooltechAssignments>
+      <SchooltechReports>//ul[@id='menu']/li[5]/a</SchooltechReports>
+      <SchooltechUserOption>//div[@id='topnav' and @class='topnav']/span[2]/a</SchooltechUserOption>
+      </SchoolTech>
+    <Super>
+      <SuperHome>//ul[@id='menu']/li[1]/a</SuperHome>
+      <SuperAdmin>//ul[@id='menu']/li[2]/a</SuperAdmin>
+      <SuperReports>//ul[@id='menu']/li[3]/a</SuperReports>
+      <SuperUserOption>//div[@id='topnav' and @class='topnav']/span[2]/a</SuperUserOption>
+    </Super>
+    <Student>
+        
+    </Student>
+      
     <UserOptionsControls>
+      
       <Profile>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[1]/td/a</Profile>
       <PassQuestion>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[2]/td/a</PassQuestion>
       <!--//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[3]/td/a
-      //fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[4]/td/a
-      //fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[5]/td/a-->
+      //fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[4]/td/a-->
+      <LogOut>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[5]/td/a</LogOut>
     </UserOptionsControls>
+    </MenuTabs>
   </HomePage>
 </ObjectRepository>
