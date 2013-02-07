@@ -88,5 +88,29 @@ namespace Automation.Development.Pages.SchoolTech
         }
         #endregion
 
+        #region Page Navigatoin methods 
+        /// <summary>
+        /// Method to navigate to User management page
+        /// </summary>
+        /// <returns></returns>
+        public SchoolTechUserManagementPage GotoUserManagementPage()
+        {
+            try
+            {
+                // New Institute link
+                if (this.WaitForElement("XPATH", (string)this.objectRepository.ObjectRepositoryTable["ManageUserControl"]))
+                {
+                    // Click manage user link
+                    this.ManageUser.Click();
+                }                
+            }
+            catch (Exception)
+            { }
+
+            return new SchoolTechUserManagementPage(this.Browser);
+ 
+        }
+        #endregion
+
     }
 }

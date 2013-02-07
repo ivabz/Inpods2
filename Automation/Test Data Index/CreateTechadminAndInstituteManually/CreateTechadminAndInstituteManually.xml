@@ -8,16 +8,16 @@
     <CreateTechAdminModule>
       <FirstName>FirstTestData</FirstName>
       <LastName>LastTestData</LastName>
-      <Email>TestData4@afourtech.com</Email>
+      <Email>TestData25@afourtech.com</Email>
       <Password>TestDataPassword</Password>
       <ConfirmPassword>TestDataPassword</ConfirmPassword>
     </CreateTechAdminModule>
     <AddNewInstituteModule>
-      <InstituteName>AFourtechTestData4</InstituteName>
+      <InstituteName>AFourtechTestData25</InstituteName>
       <InstituteDescription>AfourTech Test data for Create institute</InstituteDescription>
       <InstituteShortName>AFour</InstituteShortName>
       <LogoFileName>Capture.PNG</LogoFileName>
-      <SchoolTechName>TestData4@afourtech.com</SchoolTechName>
+      <SchoolTechName>TestData25@afourtech.com</SchoolTechName>
       <TimeZone>(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</TimeZone>
       <PasswordReset>Student</PasswordReset>
     </AddNewInstituteModule>

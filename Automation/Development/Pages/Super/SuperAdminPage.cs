@@ -119,21 +119,15 @@ namespace Automation.Development.Pages.Super
         {
             try
             {
-                /// New Institute link
-                bool isNewInstituteLink = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["NewInstituteLink"]);
-
-                if (!isNewInstituteLink)
+                // New Institute link
+                if (this.WaitForElement("XPATH", (string)this.objectRepository.ObjectRepositoryTable["NewInstituteLink"]))
                 {
-                    throw new Exception("NewInstituteLink");
+                    // Click on Create new institute link
+                    this.NewInstituteLink.Click();
                 }
-
-                /// Click on Create new institute link
-                this.NewInstituteLink.Click();
             }
-            catch (Exception e)
-            {
-                throw new Exception ("Error locating - " + e.Message);
-            }
+            catch (Exception)
+            { }
 
             return new CreateInstitutePage(this.Browser);
         }

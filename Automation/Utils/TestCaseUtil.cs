@@ -125,7 +125,11 @@ namespace Automation.TestScripts
 
         protected string PrepareTestDataFilePath(string testScriptName)
         {
-            return this.currentDirectory + this.projectDirectory + "\\" + this.testDataDirectory + "\\" + testScriptName + "\\" + testScriptName + ".xml";
+            return this.PrepareTestDataDirectory(testScriptName) + testScriptName + ".xml";
+        }
+        protected string PrepareTestDataDirectory(string testScriptName)
+        {
+            return this.currentDirectory + this.projectDirectory + "\\" + this.testDataDirectory + "\\" + testScriptName + "\\";
         }
 
         protected string PrepareDocumentPath(string testScriptName, string fileName)

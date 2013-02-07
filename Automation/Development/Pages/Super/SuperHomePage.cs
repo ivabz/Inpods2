@@ -52,16 +52,8 @@ namespace Automation.Development.Pages.Super
         private void LocateControls()
         {
             ////TODO: addtional Home page UI control initialization goes here
-
+            //throw new NotImplementedException();
         }
         #endregion
-
-        public void CreateTechAdminAndInstituteManually(string firstName, string lastName, string email, string password)
-        {
-            
-
-        }
-
-
     }
 }

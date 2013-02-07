@@ -141,56 +141,6 @@ namespace Automation.TestScripts
         }
 
         /// <summary>
-        /// Test case to verify if create module and corresponding event works fine.
-        /// </summary>
-        [Ignore]
-        [TestMethod, Description("Test case to verify if create module and corresponding event works fine.")]
-        public void CreateAndVerifyEvent()
-        {
-            /// Gets test name
-            string testScriptName = TestContext.TestName;
-
-            try
-            {
-                /// Start debug viewer for writting application logs
-                applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
-                applicationLog.StartDebugViewer();
-
-                /// Prepare test data file path
-                string testDataFilePath = PrepareTestDataFilePath(testScriptName);
-
-                /// Test Data
-                TestData testData = new TestData(testDataFilePath);
-                string schooltechUName = (string)testData.TestDataTable["SchooltechUName"];
-                string schooltechPassword = (string)testData.TestDataTable["SchooltechPassword"];
-
-                /// Create browser instace
-                browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
-                LoginPage loginPage = new LoginPage(browser);
-
-                /// Log in as Schooltech
-                SchoolTechHomePage st_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
-
-            }
-            catch (Exception exception)
-            {
-                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
-                Assert.Fail();
-            }
-            finally
-            {
-                /// Close Debug viewer and verify log file
-                applicationLog.StopDebugViewer();
-                bool isExceptionFound = applicationLog.VerifyDebugLogFiles(reportFileDirectory, testScriptName);
-                if (!isExceptionFound)
-                {
-                    WriteLogs(testScriptName, stepNo, "Exception/error found in log file", "INFO", browser);
-                }
-            }
-
-        }
-
-        /// <summary>
         /// Test case to create and verify Techadmin and Institute creation manually (i.e Not through CSV)
         /// </summary>
         [TestMethod, Description("BVT - Test case to create and verify Techadmin and Institute creation manually")]
@@ -208,6 +158,7 @@ namespace Automation.TestScripts
 
                 /// Prepare test data file path
                 string testDataFilePath = PrepareTestDataFilePath(testScriptName);
+                string testDataDirectoryPath = PrepareTestDataDirectory(testScriptName);
 
                 /// Test Data
                 TestData testData = new TestData(testDataFilePath);
@@ -220,7 +171,7 @@ namespace Automation.TestScripts
                 string instituteName = (string)testData.TestDataTable["InstituteName"];
                 string instituteDescription = (string)testData.TestDataTable["InstituteDescription"];
                 string instituteShortName= (string)testData.TestDataTable["InstituteShortName"];
-                string logoFilePath= testDataFilePath + (string)testData.TestDataTable["LogoFileName"];
+                string logoFilePath= testDataDirectoryPath + (string)testData.TestDataTable["LogoFileName"];
                 string schoolTechName= (string)testData.TestDataTable["SchoolTechName"];
                 string timeZone= (string)testData.TestDataTable["TimeZone"];
                 string passwordReset= (string)testData.TestDataTable["PasswordReset"];
@@ -236,29 +187,30 @@ namespace Automation.TestScripts
                 stepNo++;
 
                 /// Go to Admin Page
-                SuperAdminPage admin = s_Homepage.GotoAdminPage();
+                SuperAdminPage admin = s_Homepage.GotoSuperAdminPage();
                 Assert.IsNotNull(admin, "Failed to navigate to super admin page");
                 WriteLogs(testScriptName, stepNo, "Navigate to Admin page", "Pass", browser);
                 stepNo++;
 
+
                 /// Click on CreateInstitute Link
                 CreateInstitutePage newInstitute = admin.GoToCreateInstitutePage();
-                Assert.IsNotNull(admin, "Failed to navigate to Create Institute Page");
+                Assert.IsNotNull(newInstitute, "Failed to navigate to Create Institute Page");
                 WriteLogs(testScriptName, stepNo, "Navigate to CreateNewInstitutePage", "Pass", browser);
                 stepNo++;
 
                 /// Create TechAdmin as schooltech
-                Assert.IsNotNull(newInstitute.CreateTechadmin(firstName, lastName, email, password), "Failed to create tech admin");
+                Assert.IsTrue(newInstitute.CreateTechadmin(firstName, lastName, email, password), "Failed to create tech admin");
                 WriteLogs(testScriptName, stepNo, "Create TechAdmin", "Pass", browser);
                 stepNo++;
 
                 /// Add new institute
-                Assert.IsNotNull(newInstitute.AddNewInstitute(instituteName, instituteDescription, instituteShortName, logoFilePath, schoolTechName, timeZone, passwordReset), "Failed to create new institute");
+                Assert.IsTrue(newInstitute.AddNewInstitute(instituteName, instituteDescription, instituteShortName, logoFilePath, schoolTechName, timeZone, passwordReset), "Failed to create new institute");
                 WriteLogs(testScriptName, stepNo, "Create New institute", "Pass", browser);
                 stepNo++;
 
                 /// LogOff
-                Assert.IsNotNull(newInstitute.SuperMenu.LogOut(), "Failed to Log out");
+                Assert.IsTrue(newInstitute.LogOut(), "Failed to Log out");
                 WriteLogs(testScriptName, stepNo, "LogOff", "Pass", browser);
             }
             catch (Exception exception)
@@ -277,6 +229,141 @@ namespace Automation.TestScripts
                 }
             }
         }
+
+        /// <summary>
+        /// Test case to verify if user of each type can be created
+        /// </summary>
+        [TestMethod,Description("BVT - Test case to create and verify if the Teacher is created successfully")]
+        public void CreateUsersOfEachRoleType()
+        {
+            /// Gets test name
+            string testScriptName = TestContext.TestName;
+
+            try
+            {
+                // Start debug viewer for writting application logs
+                applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
+                applicationLog.StartDebugViewer();
+
+                // Prepare test data file path
+                string testDataFilePath = PrepareTestDataFilePath(testScriptName);
+                string testDataDirectoryPath = PrepareTestDataDirectory(testScriptName);
+
+                // Test Data
+                TestData testData = new TestData(testDataFilePath);
+                string schooltechUName = (string)testData.TestDataTable["schooltechUName"];
+                string schooltechPassword = (string)testData.TestDataTable["schooltechPassword"];
+
+                string teacherRole = (string)testData.TestDataTable["teacherRole"];
+                string firstNameTeacher = (string)testData.TestDataTable["firstNameTeacher"];
+                string lastNameTeacher = (string)testData.TestDataTable["lastNameTeacher"];
+                string emailTeacher = (string)testData.TestDataTable["emailTeacher"];
+                string passwordTeacher = (string)testData.TestDataTable["passwordTeacher"];
+
+                string parentRole = (string)testData.TestDataTable["parentRole"];
+                string firstNameParent = (string)testData.TestDataTable["firstNameParent"];
+                string lastNameParent = (string)testData.TestDataTable["lastNameParent"];
+                string emailParent = (string)testData.TestDataTable["emailParent"];
+                string passwordParent = (string)testData.TestDataTable["passwordParent"];
+
+                string authorRole = (string)testData.TestDataTable["authorRole"];
+                string firstNameAuthor = (string)testData.TestDataTable["firstNameAuthor"];
+                string lastNameAuthor = (string)testData.TestDataTable["lastNameAuthor"];
+                string emailAuthor = (string)testData.TestDataTable["emailAuthor"];
+                string passwordAuthor = (string)testData.TestDataTable["passwordAuthor"];
+
+                string administratorRole = (string)testData.TestDataTable["administratorRole"];
+                string firstNameAdministrator = (string)testData.TestDataTable["firstNameAdministrator"];
+                string lastNameAdministrator = (string)testData.TestDataTable["lastNameAdministrator"];
+                string emailAdministrator = (string)testData.TestDataTable["emailAdministrator"];
+                string passwordAdministrator = (string)testData.TestDataTable["passwordAdministrator"];
+
+                string schooltechRole = (string)testData.TestDataTable["schooltechRole"];
+                string firstNameSchooltech = (string)testData.TestDataTable["firstNameSchooltech"];
+                string lastNameSchooltech = (string)testData.TestDataTable["lastNameSchooltech"];
+                string emailSchooltech = (string)testData.TestDataTable["emailSchooltech"];
+                string passwordSchooltech = (string)testData.TestDataTable["passwordSchooltech"];
+
+                string studentRole = (string)testData.TestDataTable["studentRole"];
+                string firstNameStudent = (string)testData.TestDataTable["firstNameStudent"];
+                string lastNameStudent = (string)testData.TestDataTable["lastNameStudent"];
+                string emailStudent = (string)testData.TestDataTable["emailStudent"];
+                string passwordStudent = (string)testData.TestDataTable["passwordStudent"];
+                
+                // Create browser instace
+                browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
+                LoginPage loginPage = new LoginPage(browser);
+
+                // Log in as Super
+                SchoolTechHomePage s_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
+                Assert.IsNotNull(s_Homepage, "Failed to login to InPods application as Schooltech");
+                WriteLogs(testScriptName, stepNo, "Login to InPods Application as Schooltech", "Pass", browser);
+                stepNo++;
+
+                // Navigate to schooltech admin
+                SchoolTechAdminPage admin = s_Homepage.GoToSchooltechAdmin();
+                Assert.IsNotNull(admin, "Failed to navigate to Schooltech Admin Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Schooltech Admin Page", "Pass", browser);
+                stepNo++;
+
+                // Navigate to User Management page
+                SchoolTechUserManagementPage manage = admin.GotoUserManagementPage();
+                Assert.IsNotNull(manage, "Failed to navigate to User management Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to User management Page", "Pass", browser);
+                stepNo++;
+
+                // Create new user of Role - 'Teacher'
+                Assert.IsTrue(manage.CreateUser(teacherRole, firstNameTeacher, lastNameTeacher, emailTeacher, passwordTeacher), "Unable to Create User of type " + teacherRole);
+                WriteLogs(testScriptName, stepNo, "Create new user of role " + teacherRole, "Pass", browser);
+                stepNo++;
+
+                // Create new user of Role - 'Parent'
+                Assert.IsTrue(manage.CreateUser(parentRole, firstNameParent, lastNameParent, emailParent, passwordParent), "Unable to Create User of type " + parentRole);
+                WriteLogs(testScriptName, stepNo, "Create new user of role " + parentRole, "Pass", browser);
+                stepNo++;
+
+                // Create new user of Role - 'Author'
+                Assert.IsTrue(manage.CreateUser(authorRole, firstNameAuthor, lastNameAuthor, emailAuthor, passwordAuthor), "Unable to Create User of type " + authorRole);
+                WriteLogs(testScriptName, stepNo, "Create new user of role " + authorRole, "Pass", browser);
+                stepNo++;
+
+                // Create new user of Role - 'Administrator'
+                Assert.IsTrue(manage.CreateUser(administratorRole, firstNameAdministrator, lastNameAdministrator, emailAdministrator, passwordAdministrator), "Unable to Create User of type " + administratorRole);
+                WriteLogs(testScriptName, stepNo, "Create new user of role " + administratorRole, "Pass", browser);
+                stepNo++;
+
+                // Create new user of Role - 'Schooltech'
+                Assert.IsTrue(manage.CreateUser(schooltechRole, firstNameSchooltech, lastNameSchooltech, emailSchooltech, passwordSchooltech), "Unable to Create User of type " + schooltechRole);
+                WriteLogs(testScriptName, stepNo, "Create new user of role " + schooltechRole, "Pass", browser);
+                stepNo++;
+
+                // Create new user of Role - 'Student'
+                Assert.IsTrue(manage.CreateUser(studentRole, firstNameStudent, lastNameStudent, emailStudent, emailStudent), "Unable to Create User of type " + studentRole);
+                WriteLogs(testScriptName, stepNo, "Create new user of role " + studentRole, "Pass", browser);
+                stepNo++;
+
+                /// LogOff
+                Assert.IsTrue(manage.LogOut(), "Failed to Log out");
+                WriteLogs(testScriptName, stepNo, "LogOff", "Pass", browser);                
+            }
+            catch (Exception exception)
+            {
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
+                Assert.Fail();
+            }
+            finally
+            {
+                /// Close Debug viewer and verify log file
+                applicationLog.StopDebugViewer();
+                bool isExceptionFound = applicationLog.VerifyDebugLogFiles(reportFileDirectory, testScriptName);
+                if (!isExceptionFound)
+                {
+                    WriteLogs(testScriptName, stepNo, "Exception/error found in log file", "INFO", browser);
+                }
+            }
+ 
+        }
+
 
         /// <summary>
         /// Test clean up activities
@@ -300,7 +387,7 @@ namespace Automation.TestScripts
         }
 
         /// <summary>
-        ///  Test Class cleanup
+        /// Class cleanup activities
         /// </summary>
         [ClassCleanup]
         public static void TestClassCleanupClass()

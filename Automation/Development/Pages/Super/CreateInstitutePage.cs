@@ -88,6 +88,11 @@ namespace Automation.Development.Pages.Super
         /// Gets ChooseLogoFileButton
         /// </summary>
         public IWebElement ChooseLogoFileButton { get; private set; }
+
+        /// <summary>
+        /// Gets Create institute by CSV button
+        /// </summary>
+        public IWebElement CreateInstituteCsvButton { get; private set; }
         #endregion
 
         /// <summary>
@@ -112,7 +117,9 @@ namespace Automation.Development.Pages.Super
             {
                 objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.Super), EnumHelper.OfType(Page.CreateInstitutePage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
-                this.LocateControls();
+                //this.LocateControls();
+                this.LocateTechAdminControls();
+                this.LocateAddInstituteControls();
             }
             catch (Exception e)
             {
@@ -123,9 +130,9 @@ namespace Automation.Development.Pages.Super
 
         #region Locate controls methods
         /// <summary>
-        /// Locates control on create institute page
+        /// Locates Tech Admin control on create institute page
         /// </summary>
-        private void LocateControls()
+        private void LocateTechAdminControls()
         {
             /// FirstNameField
             bool isFirstNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["FirstNameField"]);
@@ -183,6 +190,12 @@ namespace Automation.Development.Pages.Super
 
             CreateTechAdminButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["CreateTechAdminButton"]);
 
+        }
+        /// <summary>
+        /// Locates Delete Institute Conrols on Create Institute Page
+        /// </summary>
+        private void LocateDeleteInstituteControls()
+        {
             /// InstituteCleanupNameField
             bool isInstituteCleanupNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteCleanupNameField"]);
 
@@ -201,6 +214,12 @@ namespace Automation.Development.Pages.Super
             }
 
             DeleteInstituteButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["DeleteInstituteButton"]);
+        }
+        /// <summary>
+        /// Locates Add new institute controls on create institute page
+        /// </summary>
+        private void LocateAddInstituteControls()
+        {
             /// InstituteNameField
             bool isInstituteNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteNameField"]);
 
@@ -271,8 +290,14 @@ namespace Automation.Development.Pages.Super
             {
                 throw new Exception("CreateInstituteButton");
             }
-
             CreateInstituteButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["CreateInstituteButton"]);
+        }
+        /// <summary>
+        /// Locates Add new institute Using CSV controls on Create Institute Mage
+        /// </summary>
+        private void LocateAddInstituteUsingCsvControls()
+        {
+            
             /// ChooseCSVButton
             bool isChooseCSVButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChooseCSVButton"]);
 
@@ -291,6 +316,16 @@ namespace Automation.Development.Pages.Super
             }
 
             ChooseLogoFileButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChooseLogoFileButton"]);
+
+            /// CreateInstituteCsvButton
+            bool isCreateInstituteCsvButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateInstituteCsvButton"]);
+
+            if (!isCreateInstituteCsvButton)
+            {
+                throw new Exception("CreateInstituteCsvButton");
+            }
+
+            CreateInstituteCsvButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["CreateInstituteCsvButton"]);
         }
         #endregion
 
@@ -307,69 +342,47 @@ namespace Automation.Development.Pages.Super
             try
             {
                 string currentPagetitle = this.Browser.PageTitle;
+                // Locate Corresponding Tech Admin Module controls 
+                LocateTechAdminControls();
 
-                /// FirstNameField
-                bool isFirstNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["FirstNameField"]);
-
-                if (!isFirstNameField)
+                // FirstNameField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["FirstNameField"]))
                 {
-                    throw new Exception("FirstNameField");
+                    this.FirstNameField.SendKeys(firstName); 
                 }
 
-                this.FirstNameField.SendKeys(firstName);
-
-                /// LastNameField
-                bool isLastNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LastNameField"]);
-
-                if (!isLastNameField)
+                // LastNameField
+                if(this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LastNameField"]))
                 {
-                    throw new Exception("LastNameField");
+                    this.LastNameField.SendKeys(lastName);
                 }
 
-                this.LastNameField.SendKeys(lastName);
-
-                /// EmailField
-                bool isEmailField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["EmailField"]);
-
-                if (!isEmailField)
+                //EmailField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["EmailField"]))
                 {
-                    throw new Exception("EmailField");
+                    this.EmailField.SendKeys(email); 
                 }
 
-                this.EmailField.SendKeys(email);
-
-                /// PasswordField
-                bool isPasswordField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["PasswordField"]);
-
-                if (!isPasswordField)
+                // PasswordField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["PasswordField"]))
                 {
-                    throw new Exception("PasswordField");
+                    this.PasswordField.SendKeys(password); 
+                }
+                
+                // ConfirmPasswordField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ConfirmPasswordField"]))
+                {
+                    this.ConfirmPasswordField.SendKeys(password); 
                 }
 
-                this.PasswordField.SendKeys(password);
-
-                /// ConfirmPasswordField
-                bool isConfirmPasswordField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ConfirmPasswordField"]);
-
-                if (!isConfirmPasswordField)
+                // Create Techadmin button
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateTechAdminButton"]))
                 {
-                    throw new Exception("ConfirmPasswordField");
+                    this.CreateTechAdminButton.Click(); 
                 }
 
-                this.ConfirmPasswordField.SendKeys(password);
-
-                /// Create Techadmin button
-                bool isCreateTechAdminButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateTechAdminButton"]);
-
-                if (!isCreateTechAdminButton)
-                {
-                    throw new Exception("CreateTechAdminButton");
-                }
-
-                this.CreateTechAdminButton.Click();
-
-                /// Checks if creation succesfull
-                if (Browser.PageTitle.Equals(currentPagetitle))
+                // Checks if creation succesfull
+                if (Browser.PageTitle.ToLower().Equals(currentPagetitle.ToLower()))
                 {
                     return true;
                 }
@@ -378,9 +391,9 @@ namespace Automation.Development.Pages.Super
                     return false;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                throw new Exception("Error location - " + e.Message);
             }
 
         }
@@ -400,98 +413,66 @@ namespace Automation.Development.Pages.Super
             try
             {
                 string currentPagetitle = this.Browser.PageTitle;
+                // Locate corresponding Add Institute module control
+                LocateAddInstituteControls();
 
-                /// InstituteNameField
-                bool isInstituteNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteNameField"]);
-
-                if (!isInstituteNameField)
+                // InstituteNameField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteNameField"]))
                 {
-                    throw new Exception("InstituteNameField");
+                    InstituteNameField.SendKeys(instituteName); 
+                }                
+
+                // InstituteDescriptionField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteDescriptionField"]))
+                {
+                    InstituteDescriptionField.SendKeys(description);
                 }
 
-                this.InstituteNameField.SendKeys(instituteName);
-
-                /// InstituteDescriptionField
-                bool isInstituteDescriptionField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteDescriptionField"]);
-
-                if (!isInstituteDescriptionField)
-                {
-                    throw new Exception("InstituteDescriptionField");
+                // InstituteShortNameField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteShortNameField"]))
+                { 
+                    InstituteShortNameField.SendKeys(shortname); 
                 }
 
-                this.InstituteDescriptionField.SendKeys(description);
-
-                /// InstituteShortNameField
-                bool isInstituteShortNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteShortNameField"]);
-
-                if (!isInstituteShortNameField)
+                // LogoChooseFileButton
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LogoChooseFileButton"]))
                 {
-                    throw new Exception("InstituteShortNameField");
+                    LogoChooseFileButton.SendKeys(logoFileLocation);
                 }
 
-                this.InstituteShortNameField.SendKeys(shortname);
-
-                /// LogoChooseFileButton
-                bool isLogoChooseFileButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LogoChooseFileButton"]);
-
-                if (!isLogoChooseFileButton)
+                // SchoolTechSelectField                
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchoolTechSelectField"]))
                 {
-                    throw new Exception("LogoChooseFileButton");
+                    // Select Desired schooltech element
+                    var schoolTech = new SelectElement(this.SchoolTechSelectField);
+                    schoolTech.SelectByValue(schoolTechType);
                 }
-
-                /// TODO : Test this.
-                this.LogoChooseFileButton.SendKeys(logoFileLocation);
-
-
-                /// SchoolTechSelectField
-                bool isSchoolTechSelectField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SchoolTechSelectField"]);
-
-                if (!isSchoolTechSelectField)
-                {
-                    throw new Exception("SchoolTechSelectField");
-                }
-
-                /// Select Desired schooltech element
-                /// TODO: test this
-                var schoolTech = new SelectElement(this.SchoolTechSelectField);
-                schoolTech.SelectByValue(schoolTechType);
 
 
                 /// SelectTimeZoneField
-                bool isSelectTimeZoneField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectTimeZoneField"]);
-
-                if (!isSelectTimeZoneField)
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectTimeZoneField"]))
                 {
-                    throw new Exception("SelectTimeZoneField");
+                    var timeZone = new SelectElement(this.SelectTimeZoneField);
+                    timeZone.SelectByText(timeZoneType);
                 }
 
-                var timeZone = new SelectElement(this.SelectTimeZoneField);
-                timeZone.SelectByValue(timeZoneType);
 
                 /// SelectPasswordResetField
-                bool isSelectPasswordResetField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectPasswordResetField"]);
-
-                if (!isSelectPasswordResetField)
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectPasswordResetField"]))
                 {
-                    throw new Exception("SelectPasswordResetField");
+                    /// Select Password reset type
+                    var passReset = new SelectElement(this.SelectPasswordResetField);
+                    passReset.SelectByText(passResetType);
                 }
 
-                /// Select Password reset type
-                var passReset = new SelectElement(this.SelectPasswordResetField);
-                passReset.SelectByValue(passResetType);
-
-                /// CreateInstituteButton
-                bool isCreateInstituteButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateInstituteButton"]);
-
-                if (!isCreateInstituteButton)
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateInstituteButton"]))
                 {
-                    throw new Exception("CreateInstituteButton");
+                    // Click create institute button
+                    CreateInstituteButton.Click();
                 }
-                                
-                this.CreateInstituteButton.Click();
 
-                /// Checks if creation succesfull
-                if (Browser.PageTitle.Equals(currentPagetitle))
+                // Checks if creation succesfull
+                if (Browser.PageTitle.ToLower().Equals(currentPagetitle.ToLower()))
                 {
                     return true;
                 }
@@ -503,6 +484,92 @@ namespace Automation.Development.Pages.Super
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Method to delete institute
+        /// </summary>
+        /// <param name="instituteName"></param>
+        /// <returns>Is Deleted</returns>
+        public bool DeleteInstitute(string instituteName)
+        {
+            try
+            {
+                string currentPageTitle = this.Browser.PageTitle;
+                LocateDeleteInstituteControls();
+                /// InstituteCleanupNameField
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["InstituteCleanupNameField"]))
+                {
+                    InstituteCleanupNameField.SendKeys(instituteName);
+                }
+
+                /// DeleteInstituteButton
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["DeleteInstituteButton"]))
+                {
+                    DeleteInstituteButton.Click();
+                }
+                if (Browser.PageTitle.ToLower().Equals(currentPageTitle.ToLower()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Method to add Institute using CSV file
+        /// TODO : Testing this function is pending since, No way for validating if the institute has been created succesfully
+        /// </summary>
+        /// <param name="csvFilePath">CSV file path</param>
+        /// <param name="logoFilePath">Logo file path</param>
+        /// <returns>Is Added</returns>
+        public bool AddNewInstituteUsingCsv(string csvFilePath, string logoFilePath)
+        {
+            try
+            {
+                string currentPageTitle = Browser.PageTitle;
+
+                LocateAddInstituteUsingCsvControls();
+                /// ChooseCSVButton
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChooseCSVButton"]))
+                {
+                    ChooseCSVButton.SendKeys(csvFilePath);
+                }
+
+                /// ChooseLogoFileButton
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChooseLogoFileButton"]))
+                {
+                    ChooseLogoFileButton.SendKeys(logoFilePath);
+                }
+
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateInstituteCsvButton"]))
+                {
+                    CreateInstituteCsvButton.Click();
+                }
+                
+                // Validate creation 
+                // TODO: Need confiormation on this
+                if(Browser.PageTitle.ToLower().Equals(currentPageTitle.ToLower()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error locating - " + e.Message);
             }
         }
         #endregion

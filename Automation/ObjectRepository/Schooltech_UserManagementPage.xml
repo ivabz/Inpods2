@@ -24,12 +24,12 @@
       <CreateStudentButton>//fieldset[@id='CreateStudent']/table/tbody/tr[6]/td[1]/input  </CreateStudentButton>
     </EnrollStudentGroup>
     <EnrollStudentsGroup>
-      <EnrollButton></EnrollButton>
+      <EnrollButton>//fieldset[@id='EnrollStudents']/input</EnrollButton>
     </EnrollStudentsGroup>
     <RelationshipGroup>
-      <ChooseParentField></ChooseParentField>
-      <ChooseStudentField></ChooseStudentField>
-      <AssociateButton></AssociateButton>
+      <ChooseParentField>//select[@id='cbxChooseParent']</ChooseParentField>
+      <ChooseStudentField>//select[@id='cbxChooseStudent']</ChooseStudentField>
+      <AssociateButton>//div[@id='middle']/form[5]/fieldset/table/tbody/tr[2]/td/input</AssociateButton>
     </RelationshipGroup>
   </HomePage>
 </ObjectRepository>

@@ -78,7 +78,14 @@ namespace Automation.TestScripts
 
                 // Code to attach zip files to the e-mail.
                 // For now the zip file is skipped because of zip file size issue (Do not delete this code)
-                // See if this file exists in the directory 
+                //// See if this file exists in the directory 
+                if (File.Exists(attachmentFilePath))
+                {
+                    // Create  the file attachment for this e-mail message.
+                    Attachment data = new Attachment(attachmentFilePath, MediaTypeNames.Application.Octet);
+                    // Add the file attachment to this e-mail message.
+                    message.Attachments.Add(data);
+                }
 
 
                 //Send the message.

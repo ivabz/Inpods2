@@ -10,7 +10,7 @@ namespace Automation.Development.Pages.SchoolTech
     /// <summary>
     /// Create course page class
     /// </summary>
-    public class CreateCoursePage : SiteNavigationMenu
+    public class CreateCoursePage : SchoolTechNavigationMenu
     {
         /// <summary>
         /// SchoolTech Object Repository
@@ -34,7 +34,7 @@ namespace Automation.Development.Pages.SchoolTech
             {
                 objectRepositoryFilePath = PrepareObjectRepositoryFilePath(EnumHelper.OfType(Role.SchoolTech), EnumHelper.OfType(Page.CreateCoursePage));
                 objectRepository = new ObjectRepository(objectRepositoryFilePath);
-                this.LocateControls();
+                //this.LocateControls();
             }
             catch (Exception e)
             {

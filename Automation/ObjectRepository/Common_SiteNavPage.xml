@@ -21,13 +21,18 @@
     </Student>
       
     <UserOptionsControls>
-      
       <Profile>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[1]/td/a</Profile>
-      <PassQuestion>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[2]/td/a</PassQuestion>
-      <!--//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[3]/td/a
-      //fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[4]/td/a-->
-      <LogOut>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[5]/td/a</LogOut>
+      <SetPasswordQestionLink>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[2]/td/a</SetPasswordQestionLink>
+      <ChangePasswordLink>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[3]/td/a</ChangePasswordLink>
+      <ContactSupportLink>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[4]/td/a</ContactSupportLink>
+      <LogoffLink>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[5]/td/a</LogoffLink>
     </UserOptionsControls>
+    <UserOptionsControlsWithoutProfileLink>
+      <SetPasswordQestionLinkWP>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[1]/td/a</SetPasswordQestionLinkWP>
+      <ChangePasswordLinkWP>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[2]/td/a</ChangePasswordLinkWP>
+      <ContactSupportLinkWP>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[3]/td/a</ContactSupportLinkWP>
+      <LogoffLinkWP>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[4]/td/a</LogoffLinkWP>
+  </UserOptionsControlsWithoutProfileLink>
     </MenuTabs>
   </HomePage>
 </ObjectRepository>

@@ -58,7 +58,7 @@ namespace Automation.Development.Pages.Common
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in login " + ex.Message);
+                throw new Exception("Exception in login : " + ex.Message);
             }
  
         }
@@ -79,7 +79,7 @@ namespace Automation.Development.Pages.Common
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in login " + ex.Message);
+                throw new Exception("Exception in login: " + ex.Message);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Automation.Development.Pages.Common
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in login " + ex.Message);
+                throw new Exception("Exception in login : " + ex.Message);
             }
         }
 
@@ -121,7 +121,7 @@ namespace Automation.Development.Pages.Common
             }
             catch (Exception ex)
             {
-                throw new Exception("Exception in login " + ex.Message);
+                throw new Exception("Exception in login : " + ex.Message);
             }
         }
 
@@ -164,12 +164,17 @@ namespace Automation.Development.Pages.Common
         /// </summary>
         private void LocateSignInButtonControl()
         {
-            bool isSignInPresent = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SignInButton"]);
-            if (!isSignInPresent)
+            try
             {
-                throw new Exception("Sign in Button not found");
+                bool isSignInPresent = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SignInButton"]);
+                if (!isSignInPresent)
+                {
+                    throw new Exception("Sign in Button not found");
+                }
+                signInButtonControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SignInButton"]);
             }
-            signInButtonControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SignInButton"]);
+            catch (Exception)
+            { }
         }
 
         /// <summary>
@@ -197,35 +202,38 @@ namespace Automation.Development.Pages.Common
                 }
                 catch (Exception)
                 { }
+
                 // Locate and click 'SignIn' drop down
                 try
                 {
                     LocateSignInButtonControl();
                     signInButtonControl.Click();
 
+                    LocateControls();
                 }
-                catch (Exception)
-                { }
+                catch (Exception e)
+                {
+
+                    throw new Exception("Error locating - " + e.Message);
+                }
 
                 // Enter Credentials and try Signin
-                try
+                if(this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserNameTextbox"]))
                 {
-                    LocateControls();
-
-                    this.userNameControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["UserNameTextbox"]);
                     userNameControl.SendKeys(userName);
-                    this.passwordControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["PasswordTextbox"]);
-                    passwordControl.SendKeys(password);
-                    this.loginButtonControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["LoginButton"]);
-                    loginButtonControl.Click();
                 }
-                catch (Exception)
-                { }
+
+                if(this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["PasswordTextbox"]))
+                {
+                    passwordControl.SendKeys(password); 
+                }
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LoginButton"]))
+                {
+                    loginButtonControl.Click(); 
+                }
             }
             catch (Exception)
             { }
-
         }
-      
     }
 }

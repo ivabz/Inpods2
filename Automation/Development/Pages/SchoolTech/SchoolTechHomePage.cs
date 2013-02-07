@@ -57,7 +57,7 @@ namespace Automation.Development.Pages.SchoolTech
         /// </summary>
         public bool ValidateSchoolTechUserProfile()
         {
-            UserProfilePage profile = SchooltechMenu.GoToUserProfile();
+            UserProfilePage profile = GoToUserProfile();
             return ((profile.RoleType.Text.Equals("SchoolTech")) ? true : false);
         } 
         #endregion

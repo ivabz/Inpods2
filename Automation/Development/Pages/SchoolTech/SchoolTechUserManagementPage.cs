@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using Automation.Development.Browsers;
 using Automation.Development.Pages.Common;
 using Automation.TestScripts;
@@ -9,7 +10,7 @@ namespace Automation.Development.Pages.SchoolTech
     /// <summary>
     /// User management page Class
     /// </summary>
-    public class UserManagementPage : SchoolTechNavigationMenu
+    public class SchoolTechUserManagementPage : SchoolTechNavigationMenu
     {
         #region User Management Page fields
         /// <summary>
@@ -113,7 +114,7 @@ namespace Automation.Development.Pages.SchoolTech
         /// User management page constructor
         /// </summary>
         /// <param name="browser"></param>
-        public UserManagementPage(Browser browser)
+        public SchoolTechUserManagementPage(Browser browser)
             : base(browser)
         {
             /// Initiate User management page object repository
@@ -131,35 +132,34 @@ namespace Automation.Development.Pages.SchoolTech
             }
         }
 
-
         #region Helper Methods
-
         /// <summary>
         /// Method to locate UserManagement page controls
         /// </summary>
         private void LocateControls()
         {
+            /// TODO: Add Locate Control methods for Manage User
             /// Manage User Group
-            bool isChooseUserField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChooseUserField"]);
-            if (!isChooseUserField)
-            {
-                throw new Exception("ChooseUserField");
-            }
-            ChooseUserField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChooseUserField"]);
+            //bool isChooseUserField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChooseUserField"]);
+            //if (!isChooseUserField)
+            //{
+            //    throw new Exception("ChooseUserField");
+            //}
+            //ChooseUserField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChooseUserField"]);
 
-            bool isNewPasswordField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["NewPasswordField"]);
-            if (!isNewPasswordField)
-            {
-                throw new Exception("NewPasswordField");
-            }
-            NewPasswordField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["NewPasswordField"]);
+            //bool isNewPasswordField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["NewPasswordField"]);
+            //if (!isNewPasswordField)
+            //{
+            //    throw new Exception("NewPasswordField");
+            //}
+            //NewPasswordField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["NewPasswordField"]);
 
-            bool isChangePasswordButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChangePasswordButton"]);
-            if (!isChangePasswordButton)
-            {
-                throw new Exception("ChangePasswordButton");
-            }
-            ChangePasswordButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChangePasswordButton"]);
+            //bool isChangePasswordButton = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChangePasswordButton"]);
+            //if (!isChangePasswordButton)
+            //{
+            //    throw new Exception("ChangePasswordButton");
+            //}
+            //ChangePasswordButton = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChangePasswordButton"]);
 
             /// Create User Group
             bool isSelectRoleField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectRoleField"]);
@@ -284,5 +284,79 @@ namespace Automation.Development.Pages.SchoolTech
         }
         #endregion
 
+        #region Public methods
+        /// <summary>
+        /// Method to Create User of desired Role type
+        /// </summary>
+        /// <param name="role">Role</param>
+        /// <param name="firstName">First Name</param>
+        /// <param name="lastName">Last Name</param>
+        /// <param name="email">Email</param>
+        /// <param name="password">Password</param>
+        /// <returns>Is Succeed</returns>
+        public bool CreateUser(string role, string firstName, string lastName, string email, string password)
+        {
+            try
+            {
+                string currentPageTitle = Browser.PageTitle;
+
+                LocateControls();
+                /// ChooseCSVButton
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectRoleField"]))
+                {
+                    var roleType = new SelectElement(SelectRoleField);
+                    roleType.SelectByText(role);
+                }
+
+                /// ChooseLogoFileButton
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserFirstNameField"]))
+                {
+                    UserFirstNameField.SendKeys(firstName);
+                }
+
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserLastNameField"]))
+                {
+                    UserLastNameField.SendKeys(lastName);
+                }
+
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserEmailField"]))
+                {
+                    UserEmailField.SendKeys(email);
+                }
+
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserPasswordField"]))
+                {
+                    UserPasswordField.SendKeys(password);
+                }
+
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserConfirmPasswordField"]))
+                {
+                    UserConfirmPasswordField.SendKeys(password);
+                }
+
+                if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["CreateUserButton"]))
+                {
+                    CreateUserButton.Click();
+                }
+
+                // Validate creation 
+                // TODO: Need confiormation on this
+                if (Browser.PageTitle.ToLower().Equals(currentPageTitle.ToLower()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error locating - " + e.Message);
+            }
+
+        }
+        #endregion
     }
 }

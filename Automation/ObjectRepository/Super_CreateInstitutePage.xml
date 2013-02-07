@@ -26,6 +26,7 @@
     <AddnewInstituteUsingCSVModule>
       <ChooseCSVButton>//input[@id='instDefn']</ChooseCSVButton>
       <ChooseLogoFileButton>//input[@id='instLogo']</ChooseLogoFileButton>
+      <CreateInstituteCsvButton>//div[@id='middle']/div[2]/form[2]/table/tbody/tr[3]/td/input</CreateInstituteCsvButton>
     </AddnewInstituteUsingCSVModule>
   </HomePage>
 </ObjectRepository>

@@ -390,58 +390,7 @@ namespace Automation.Development.Pages.Common
         #endregion 
 
         #region Public functions
-        /// <summary>
-        /// Method to go to User Profile page
-        /// </summary>
-        /// <returns></returns>
-        public UserProfilePage GoToUserProfile()
-        {
-            /// Click User Options tab
-            bool isUserOptionControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["UserOption"]);
-
-            if (!isUserOptionControl)
-            {
-                throw new Exception("UserOption Tab");
-            }
-
-            this.UserOptionControl.Click();
-            this.LocateUserOptionControls();
-
-            /// Click on Profile link
-            ProfileLinkControl.Click();
-
-            /// return profiles page
-            return new UserProfilePage(this.Browser);
-        }
-
-        /// <summary>
-        /// Function to log out from current page
-        /// </summary>
-        /// <returns></returns>
-        public bool LogOut()
-        {
-            try
-            {
-                /// Click User Options tab
-                bool isUserOptionControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SuperUserOption"]);
-
-                if (!isUserOptionControl)
-                {
-                    throw new Exception("UserOption Tab");
-                }
-
-                UserOptionControl.Click();
-                LocateUserOptionControls();
-
-                /// Click on Profile link
-                LogOffLinkControl.Click();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+                
         #endregion 
 
         #region Helper methods
@@ -449,7 +398,7 @@ namespace Automation.Development.Pages.Common
         /// <summary>
         ///  Function to ocate user controls
         /// </summary>
-        private void LocateUserOptionControls()
+        public void LocateUserOptionControls()
         {
             try
             {
@@ -503,6 +452,57 @@ namespace Automation.Development.Pages.Common
                 }
 
                 LogOffLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["LogoffLink"]);
+            }
+            catch (Exception)
+            { }
+        }
+
+        /// <summary>
+        ///  Function to ocate user controls With profile link disabled
+        /// </summary>
+        public void LocateUserOptionControlsWithProfileDisable()
+        {
+            try
+            {
+                /// Set password question link
+                bool isSetPasswordQuestionLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SetPasswordQestionLinkWP"]);
+
+                if (!isSetPasswordQuestionLinkControl)
+                {
+                    throw new Exception("SetPasswordQestionLink");
+                }
+
+                SetPasswordQuestionLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SetPasswordQestionLinkWP"]);
+
+                /// Change password link 
+                bool isChangePasswordLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ChangePasswordLinkWP"]);
+
+                if (!isChangePasswordLinkControl)
+                {
+                    throw new Exception("ChangePasswordLink");
+                }
+
+                ChangePasswordLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ChangePasswordLinkWP"]);
+
+                /// Contact suppport link
+                bool isConatctSupportLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["ContactSupportLinkWP"]);
+
+                if (!isConatctSupportLinkControl)
+                {
+                    throw new Exception("ContactSupportLink");
+                }
+
+                ConatctSupportLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["ContactSupportLinkWP"]);
+
+                /// Log off link
+                bool isLogOffLinkControl = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["LogoffLinkWP"]);
+
+                if (!isLogOffLinkControl)
+                {
+                    throw new Exception("LogoffLink");
+                }
+
+                LogOffLinkControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["LogoffLinkWP"]);
             }
             catch (Exception)
             { }

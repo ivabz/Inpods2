@@ -9,7 +9,7 @@ namespace Automation.Development.Pages.Super
     /// TODO: Abstract this class to seperate out common user management functionality in one common User management page class whcih could be inherited 
     /// accross all the roles.
     /// </summary>
-    public class UserManagementPage
+    public class SuperUserManagementPage
     {
     }
 }

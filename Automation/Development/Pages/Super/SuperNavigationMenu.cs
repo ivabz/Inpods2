@@ -23,7 +23,6 @@ namespace Automation.Development.Pages.Super
         {
             try
             {
-
                 SuperMenu = new SiteNavigationMenu(browser);
                 SuperMenu.LocateSuperMenuControls();
             }
@@ -39,10 +38,13 @@ namespace Automation.Development.Pages.Super
         /// Method to Navigate to Admin Page
         /// </summary>
         /// <returns></returns>
-        public SuperAdminPage GotoAdminPage()
+        public SuperAdminPage GotoSuperAdminPage()
         {
             try
             {
+                // re initializing due to page reload
+                SuperMenu.LocateSuperMenuControls();
+
                 /// Click on Admin Tab and navigate to admin page
                 bool isadminTabControl = this.WaitForElement("XPATH", (string)SuperMenu.objectRepository.ObjectRepositoryTable["SuperAdmin"]);
 
@@ -60,6 +62,33 @@ namespace Automation.Development.Pages.Super
 
             /// return profiles page
             return new SuperAdminPage(this.Browser);
+        }
+
+        /// <summary>
+        /// Function to log out from current page
+        /// </summary>
+        /// <returns></returns>
+        public bool LogOut()
+        {
+            try
+            {
+                SuperMenu.LocateSuperMenuControls();
+                /// Click User Options tab
+                if (this.WaitForElement("XPATH", (string)SuperMenu.objectRepository.ObjectRepositoryTable["SuperUserOption"]))
+                {
+                    SuperMenu.UserOptionControl.Click();
+                }
+                
+                SuperMenu.LocateUserOptionControlsWithProfileDisable();
+
+                /// Click on Profile link
+                this.SuperMenu.LogOffLinkControl.Click();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion
     }

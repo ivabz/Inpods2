@@ -26,7 +26,84 @@ namespace Automation.Development.Pages.SchoolTech
             : base(browser)
         {
             SchooltechMenu = new SiteNavigationMenu(browser);
-            SchooltechMenu.LocateSchoolTechMenuControls(); 
         }
+
+        #region Navigation Methods
+        /// <summary>
+        /// Method to go to User Profile page
+        /// </summary>
+        /// <returns></returns>
+        public UserProfilePage GoToUserProfile()
+        {
+            try
+            {
+                SchooltechMenu.LocateSchoolTechMenuControls();
+
+                /// Click User Options tab
+                if (this.WaitForElement("XPATH", (string)SchooltechMenu.objectRepository.ObjectRepositoryTable["SchooltechUserOption"]))
+                {
+                    SchooltechMenu.UserOptionControl.Click();
+                }
+
+                SchooltechMenu.LocateUserOptionControls();
+
+                /// Click on Profile link
+                SchooltechMenu.ProfileLinkControl.Click();
+
+                /// return profiles page
+                return new UserProfilePage(this.Browser);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error Locating -" + e.Message);
+            }
+        }
+
+        public SchoolTechAdminPage GoToSchooltechAdmin()
+        {
+              try
+            {
+                SchooltechMenu.LocateSchoolTechMenuControls();
+                /// Click Profile tab
+                if (this.WaitForElement("XPATH", (string)SchooltechMenu.objectRepository.ObjectRepositoryTable["SchooltechAdmin"]))
+                {
+                    SchooltechMenu.AdminTabControl.Click();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error Locating -" + e.Message);
+            }
+              return new SchoolTechAdminPage(this.Browser);
+        }
+
+        /// <summary>
+        /// Function to log out from current page
+        /// </summary>
+        /// <returns></returns>
+        public bool LogOut()
+        {
+            try
+            {
+                SchooltechMenu.LocateSuperMenuControls();
+                /// Click User Options tab
+                if (this.WaitForElement("XPATH", (string)SchooltechMenu.objectRepository.ObjectRepositoryTable["SuperUserOption"]))
+                {
+                    SchooltechMenu.UserOptionControl.Click();
+                }
+
+                SchooltechMenu.LocateUserOptionControls();
+
+                /// Click on Profile link
+                this.SchooltechMenu.LogOffLinkControl.Click();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        #endregion
+
     }
 }
