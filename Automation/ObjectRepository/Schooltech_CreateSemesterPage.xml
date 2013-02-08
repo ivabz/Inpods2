@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ObjectRepository>
-  <HomePage>
-  </HomePage>
+  <CreateSemsterPage>
+    <SemesterTitle>//input[@id='SemesterTitle' and @class='text-box single-line']</SemesterTitle>
+    <SemesterYear>//input[@id='Year' and @class='text-box single-line']</SemesterYear>
+    <SemesterDescription>//input[@id='SemesterDescription' and @class='text-box single-line']</SemesterDescription>
+    <SchoolYear>//input[@id='SchoolYear' and @class='text-box single-line']</SchoolYear>
+    <StartDate>//input[@id='StartDate']</StartDate>
+    <EndDate>//input[@id='EndDate']</EndDate>
+    <SubmitButton>//div[@id='middle']/form/input[@class='submit']</SubmitButton>
+    <BackLink>//div[@id='middle']/div/a</BackLink>
+  </CreateSemsterPage>
 </ObjectRepository>

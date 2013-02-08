@@ -125,7 +125,7 @@ namespace Automation.TestScripts
             }
            catch (Exception exception)
             {
-                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in  \"" + testScriptName + "\" Test case", "FAIL", browser);
                 Assert.Fail();
             }
             finally
@@ -215,7 +215,7 @@ namespace Automation.TestScripts
             }
             catch (Exception exception)
             {
-                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in \"" + testScriptName + "\" Test case", "FAIL", browser);
                 Assert.Fail();
             }
             finally
@@ -294,7 +294,7 @@ namespace Automation.TestScripts
                 browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
                 LoginPage loginPage = new LoginPage(browser);
 
-                // Log in as Super
+                // Log in as Schooltech
                 SchoolTechHomePage s_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
                 Assert.IsNotNull(s_Homepage, "Failed to login to InPods application as Schooltech");
                 WriteLogs(testScriptName, stepNo, "Login to InPods Application as Schooltech", "Pass", browser);
@@ -348,7 +348,7 @@ namespace Automation.TestScripts
             }
             catch (Exception exception)
             {
-                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in " + testScriptName, "FAIL", browser);
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + " Exception Occured in \"" + testScriptName + "\" Test case", "FAIL", browser);
                 Assert.Fail();
             }
             finally
@@ -364,6 +364,183 @@ namespace Automation.TestScripts
  
         }
 
+        /// <summary>
+        /// Test case to verify if new semester can be created.
+        /// </summary>
+        [TestMethod,Description("BVT - Test case to create and verify if semester is created successfully")]
+        public void CreateSemester()
+        {
+             /// Gets test name
+            string testScriptName = TestContext.TestName;
+
+            try
+            {
+                // Start debug viewer for writting application logs
+                applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
+                applicationLog.StartDebugViewer();
+
+                // Prepare test data file path
+                string testDataFilePath = PrepareTestDataFilePath(testScriptName);
+                string testDataDirectoryPath = PrepareTestDataDirectory(testScriptName);
+
+                // Test Data
+                TestData testData = new TestData(testDataFilePath);
+                string schooltechUName = (string)testData.TestDataTable["schooltechUName"];
+                string schooltechPassword = (string)testData.TestDataTable["schooltechPassword"];
+
+                string semesterTitle = (string)testData.TestDataTable["semesterTitle"];
+                string semesterYear = (string)testData.TestDataTable["semesterYear"];
+                string semesterDescription = (string)testData.TestDataTable["semesterDescription"];
+                string schoolYear = (string)testData.TestDataTable["schoolYear"];
+                string startDate = (string)testData.TestDataTable["startDate"];
+                string endDate = (string)testData.TestDataTable["endDate"];
+                
+
+                // Create browser instace
+                browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
+                LoginPage loginPage = new LoginPage(browser);
+
+                // Log in as Schooltech
+                SchoolTechHomePage s_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
+                Assert.IsNotNull(s_Homepage, "Failed to login to InPods application as Schooltech");
+                WriteLogs(testScriptName, stepNo, "Login to InPods Application as Schooltech", "Pass", browser);
+                stepNo++;
+
+                // Navigate to schooltech admin
+                SchoolTechAdminPage admin = s_Homepage.GoToSchooltechAdmin();
+                Assert.IsNotNull(admin, "Failed to navigate to Schooltech Admin Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Schooltech Admin Page", "Pass", browser);
+                stepNo++;
+
+                // Navigate to Course Management page
+                SchoolTechCourseManagementPage manage = admin.GotoCourseManagementPage();
+                Assert.IsNotNull(manage, "Failed to navigate to Manage Course Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Manage Course Page", "Pass", browser);
+                stepNo++;
+
+                // Navigate to create Semester page
+                CreateSemesterPage semester = manage.GoToCreateSemesterPage();
+                Assert.IsNotNull(manage, "Failed to navigate to Create Semester Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Create Semester Page", "Pass", browser);
+                stepNo++;
+
+                // Create new semester
+                Assert.IsTrue(semester.CreateNewSemester(semesterTitle, semesterYear, semesterDescription, schoolYear, startDate, endDate), "Unable to create new semester");
+                WriteLogs(testScriptName, stepNo, "Create new semester " + semesterTitle, "Pass", browser);
+                stepNo++;
+
+                // Log out
+                Assert.IsTrue(manage.LogOut(), "Failed to Log out");
+                WriteLogs(testScriptName, stepNo, "LogOff", "Pass", browser); 
+            }
+            catch (Exception exception)
+            {
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + "And Exception Occured in \"" + testScriptName + "\" Test case", "FAIL", browser);
+                Assert.Fail();
+            }
+            finally
+            {
+                /// Close Debug viewer and verify log file
+                applicationLog.StopDebugViewer();
+                bool isExceptionFound = applicationLog.VerifyDebugLogFiles(reportFileDirectory, testScriptName);
+                if (!isExceptionFound)
+                {
+                    WriteLogs(testScriptName, stepNo, "Exception/error found in log file", "INFO", browser);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Test case to verify if New department and subject is created.
+        /// </summary>
+        [TestMethod, Description("BVT - Test method to create and verify if new department and subject under that department is created successfully")]
+        public void CreateDepartmentAndSubject()
+        {
+             /// Gets test name
+            string testScriptName = TestContext.TestName;
+
+            try
+            {
+                // Start debug viewer for writting application logs
+                applicationLog = new ApplicationLog(configFilesLocation, reportFileDirectory, testScriptName);
+                applicationLog.StartDebugViewer();
+
+                // Prepare test data file path
+                string testDataFilePath = PrepareTestDataFilePath(testScriptName);
+                string testDataDirectoryPath = PrepareTestDataDirectory(testScriptName);
+
+                // Test Data
+                TestData testData = new TestData(testDataFilePath);
+                string schooltechUName = (string)testData.TestDataTable["schooltechUName"];
+                string schooltechPassword = (string)testData.TestDataTable["schooltechPassword"];
+
+                string departmentName = (string)testData.TestDataTable["departmentName"];
+                string departmentDescription = (string)testData.TestDataTable["departmentDescription"];
+                string subjectName = (string)testData.TestDataTable["subjectName"];
+                string subjectDescription = (string)testData.TestDataTable["subjectDescription"];
+
+                // Create browser instace
+                browser = BrowserFactory.Instance.GetBrowser(browserId, testScriptName, configFilesLocation, driverPath);
+                LoginPage loginPage = new LoginPage(browser);
+
+                // Log in as Schooltech
+                SchoolTechHomePage s_Homepage = loginPage.LoginAsSchoolTech(schooltechUName, schooltechPassword, base.applicationURL);
+                Assert.IsNotNull(s_Homepage, "Failed to login to InPods application as Schooltech");
+                WriteLogs(testScriptName, stepNo, "Login to InPods Application as Schooltech", "Pass", browser);
+                stepNo++;
+
+                // Navigate to schooltech admin
+                SchoolTechAdminPage admin = s_Homepage.GoToSchooltechAdmin();
+                Assert.IsNotNull(admin, "Failed to navigate to Schooltech Admin Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Schooltech Admin Page", "Pass", browser);
+                stepNo++;
+
+                // Navigate to Course Management page
+                SchoolTechCourseManagementPage manage = admin.GotoCourseManagementPage();
+                Assert.IsNotNull(manage, "Failed to navigate to Manage Course Page");
+                WriteLogs(testScriptName, stepNo, "Navigate to Manage Course Page", "Pass", browser);
+                stepNo++;
+
+                // Create Department
+                Assert.IsTrue(manage.CreateNewDepartment(departmentName, departmentDescription),"Unable to create new department");
+                WriteLogs(testScriptName, stepNo, "Create new Department " + departmentName, "Pass", browser);
+                stepNo++;
+
+                Assert.IsTrue(manage.CreateNewSubject(departmentName, subjectName, subjectDescription), "Unable to create new Subject");
+                WriteLogs(testScriptName, stepNo, "Create new Subject " + subjectName + "Under "+ departmentName, "Pass", browser);
+                stepNo++;
+
+                // Log out
+                Assert.IsTrue(manage.LogOut(), "Failed to Log out");
+                WriteLogs(testScriptName, stepNo, "LogOff", "Pass", browser);
+            }
+            catch (Exception exception)
+            {
+                WriteLogs(testScriptName, stepNo, exception.Message.ToString() + "And Exception Occured in \"" + testScriptName + "\" Test case", "FAIL", browser);
+                Assert.Fail();
+            }
+            finally
+            {
+                
+                /// Close Debug viewer and verify log file
+                applicationLog.StopDebugViewer();
+                bool isExceptionFound = applicationLog.VerifyDebugLogFiles(reportFileDirectory, testScriptName);
+                if (!isExceptionFound)
+                {
+                    WriteLogs(testScriptName, stepNo, "Exception/error found in log file", "INFO", browser);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Test case to verify if new section is created or not.
+        /// </summary>
+        [Ignore]
+        [TestMethod, Description("BVT - Test method to create and verify new section ")]
+        public void CreateNewSection()
+        {
+            new NotImplementedException();
+        }
 
         /// <summary>
         /// Test clean up activities
@@ -452,6 +629,15 @@ namespace Automation.TestScripts
             finally
             {
             }
+        }
+
+        /// <summary>
+        /// TODO: Abstract out logic for debug loggging from test case here.
+        /// </summary>
+        /// <param name="testScriptName"></param>
+        private static void StopAndVerifyDebugLog(string testScriptName)
+        {
+             new NotImplementedException();
         }
         #endregion
     }

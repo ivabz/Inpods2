@@ -120,7 +120,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Development\Pages\SchoolTech\ConceptsManagementPage.cs" />
-    <Compile Include="Development\Pages\SchoolTech\CourseManagementPage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\SchoolTechCourseManagementPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateCoursePage.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateLessonBySchooltech.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateModuleBySchooltech.cs" />
@@ -206,6 +206,8 @@
     <Content Include="Test Data Index\AutoITScripts\UploadFileScriptError.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Test Data Index\CreateDepartmentAndSubject\CreateDepartmentAndSubject.xml" />
+    <Content Include="Test Data Index\CreateSemester\CreateSemester.xml" />
     <Content Include="Test Data Index\CreateTechadminAndInstituteManually\Capture.PNG" />
     <Content Include="Test Data Index\CreateTechadminAndInstituteManually\CreateTechadminAndInstituteManually.xml" />
     <Content Include="Test Data Index\CreateUsersOfEachRoleType\CreateUsersOfEachRoleType.xml" />

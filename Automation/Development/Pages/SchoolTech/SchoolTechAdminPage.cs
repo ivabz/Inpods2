@@ -110,6 +110,24 @@ namespace Automation.Development.Pages.SchoolTech
             return new SchoolTechUserManagementPage(this.Browser);
  
         }
+        
+        public SchoolTechCourseManagementPage GotoCourseManagementPage()
+        {
+            try
+            {
+                // New Institute link
+                if (this.WaitForElement("XPATH", (string)this.objectRepository.ObjectRepositoryTable["ManageCourseControl"]))
+                {
+                    // Click manage Course link
+                    this.ManageCourse.Click();
+                }                
+            }
+            catch (Exception)
+            { }
+
+            return new SchoolTechCourseManagementPage(this.Browser);
+ 
+        }
         #endregion
 
     }

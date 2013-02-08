@@ -135,6 +135,7 @@ namespace Automation.Development.Pages.SchoolTech
         #region Helper Methods
         /// <summary>
         /// Method to locate UserManagement page controls
+        /// TODO: Seperate out UI module wise locate controls methods so that, specific module can be re located after page relaoad
         /// </summary>
         private void LocateControls()
         {
@@ -300,7 +301,9 @@ namespace Automation.Development.Pages.SchoolTech
             {
                 string currentPageTitle = Browser.PageTitle;
 
+                // TODO: Instead of Locating controls on entire page, Call LocateCotrol specific to that module.
                 LocateControls();
+
                 /// ChooseCSVButton
                 if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SelectRoleField"]))
                 {
