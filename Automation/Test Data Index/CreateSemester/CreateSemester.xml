@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+  <CreateSemester>
+    <schooltechUName>schooltech@afourtech.com</schooltechUName>
+    <schooltechPassword>techone</schooltechPassword>
+    <semesterTitle>TestDataSemester</semesterTitle>
+    <semesterYear>2012</semesterYear>
+    <semesterDescription>This is TestDataSemester</semesterDescription>
+    <schoolYear>2013-2014</schoolYear>
+    <startDate>04/01/2013</startDate>
+    <endDate>10/31/2013</endDate>    
+  </CreateSemester>
+</TestData>

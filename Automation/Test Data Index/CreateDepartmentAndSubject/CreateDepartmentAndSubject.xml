@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TestData>
+  <CreateDepartment>
+    <schooltechUName>schooltech@afourtech.com</schooltechUName>
+    <schooltechPassword>techone</schooltechPassword>
+    <departmentName>TestDataDepartment</departmentName>
+    <departmentDescription>This is TestDataDepartment</departmentDescription>
+    <subjectName>TestDataSubject</subjectName>
+    <subjectDescription>This is TestDataSubject</subjectDescription>
+  </CreateDepartment>
+</TestData>
