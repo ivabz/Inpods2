@@ -56,8 +56,7 @@ namespace Automation.TestScripts
             {
                 string emailHTMLStart = "<HTML><BODY>";
                 string emailHTMLEnd = "</BODY></HTML>";
-                string emailSummery = "<strong><font size=\"3\" face=\"Calibri\"> InPods Test Automation Summery </font></strong><br /><br />";
-
+                
                 string attachmentFilePath = this.ReportFileDirectory + ".zip";
 
                 string embeddedImagePath = this.ReportFileDirectory + "\\HtmlFiles\\excel_chart_export.bmp";
@@ -65,6 +64,7 @@ namespace Automation.TestScripts
                 int portNo = 587;
                 // Loads config data and creates a Singleton object of Configuration and loads data into generic test case variables
                 this.GetConfigData();
+                string emailSummery = "<strong><font size=\"3\" face=\"Calibri\"> InPods Test Automation Summery </font></strong> <br /><br /><String>Browser : </Strong><B>" + browserId + "</B><Br></br>" ;
 
                 emailSubject = emailSubject + " " + DateTime.Now;
 

@@ -6,6 +6,7 @@ using Automation.TestScripts;
 
 namespace Automation.TestScripts
 {
+    // TODO: Remove this unneccesary class in not needed in future.
     //[TestClass]
     //public class BaseClass : TestCaseUtil
     //{
