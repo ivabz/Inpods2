@@ -469,15 +469,26 @@ namespace Automation.TestScripts
         /// <author>rajan.bansod</author> 
         /// <ModifiedBy>rajan.bansod</ModifiedBy>
         /// <Date>12-Aug-2011</Date>
+        ///
         public string GetProjectLocation()
         {
             string projectPath = null;
+            string[] projectPathArray;
             try
             {
                 // get result directory 
                 projectPath = System.IO.Directory.GetCurrentDirectory();
                 // split the path from 'TestResults' folder name which is auto-generated
-                string[] projectPathArray = Regex.Split(projectPath, "TestResults");
+
+                if (projectPath.Contains("TestResults"))
+                {
+                    projectPathArray = Regex.Split(projectPath, "TestResults");
+                }
+                else
+                {
+                    projectPathArray = Regex.Split(projectPath, "TestResults");
+                    projectPathArray[0] = projectPathArray[0] + "\\";
+                }
                 // return project path
                 //return @"C:\QA\Automation\RefactoredCode\ComputeNextAutomationRefactored\";
                 return projectPathArray[0];

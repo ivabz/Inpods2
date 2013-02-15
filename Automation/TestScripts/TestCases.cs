@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Automation.Development.Browsers;
 using Automation.Development.Pages;
 using Automation.Development.Pages.Common;
@@ -7,54 +6,58 @@ using Automation.Development.Pages.SchoolTech;
 using Automation.Development.Pages.Super;
 using Automation.TestScripts;
 using System.IO;
+using NUnit.Framework;
 
 
 namespace Automation.TestScripts
 {
-    [TestClass]
+    [TestFixture]
     public class TestCases : TestCaseUtil
     {
-        /// Initializing all Test Parametrs        
+        #region Test Parameters
+        /// <summary>
+        /// Browser Instance
+        /// </summary>
         Browser browser;
-        int stepNo;
+        /// <summary>
+        /// Specifies Test step number in test cases
+        /// </summary>
+        private int stepNo;
+        /// <summary>
+        /// startTimeOfExecution
+        /// </summary>
         static DateTime startTimeOfExecution = new DateTime();
+        /// <summary>
+        /// endTimeOfExecution
+        /// </summary>
         static DateTime endTimeOfExecution = new DateTime();
-        private static string ExecutionStartDateTime = String.Empty;
-        private static string logFilesDirectory = String.Empty;
+        /// <summary>
+        /// ExecutionStartDateTime
+        /// </summary>
+        private string ExecutionStartDateTime = String.Empty;
+        private string logFilesDirectory = String.Empty;
 
-        private static string reportFilesDirectory = String.Empty;
-        private static string serverName = String.Empty;
-        private static string configFilesLocation = String.Empty;
-        private static string embeddedMailContents = String.Empty;
+        private string reportFilesDirectory = String.Empty;
+        private string serverName = String.Empty;
+        private string configFilesLocation = String.Empty;
+        private string embeddedMailContents = String.Empty;
 
         /// Application log instance
         ApplicationLog applicationLog;
         
-        /// <summary>
-        /// Defines test context
-        /// </summary>
-        private TestContext testContextInstance;
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
+        #endregion
 
         /// <summary>
         /// TestCases Class Constructor
         /// </summary>
         public TestCases() 
+        { }
+
+        /// <summary>
+        /// Test Fixture setup method
+        /// </summary>
+        [TestFixtureSetUp]
+        public void TestFixtureSetup()
         {
             try
             {
@@ -77,24 +80,31 @@ namespace Automation.TestScripts
                 /// Initialize browser instance
                 browser = null;
                 applicationLog = null;
-                stepNo = 1;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Test Setup Failed - " + e.Message);
             }
         }
-        
+
+        /// <summary>
+        /// Test case setup method
+        /// </summary>
+        [SetUp]
+        public void TestSetup()
+        {
+            stepNo = 1;
+        }
+
         /// <summary>
         /// Test case to verify the user log in Functionlity Eg: For role - SchoolTech
         /// </summary>
-        [TestMethod,Description("BVT -Test to validate user LogIn functionality - Role - SchoolTech")]
-        [Priority(0)]
+        [Test,Description("BVT -Test to validate user LogIn functionality - Role - SchoolTech")]
         public void LoginTestCase()
         {            
-            /// Gets test name
-            string testScriptName = TestContext.TestName;
-
+            /// Test case name
+            testScriptName = "LoginTestCase";
+                
             try
             {
                 /// Start debug viewer for writting application logs
@@ -143,12 +153,12 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to create and verify Techadmin and Institute creation manually (i.e Not through CSV)
         /// </summary>
-        [TestMethod, Description("BVT - Test case to create and verify Techadmin and Institute creation manually")]
-        [Priority(0)]
+        [Test, Description("BVT - Test case to create and verify Techadmin and Institute creation manually")]
+        //[Priority(0)]
         public void CreateTechadminAndInstituteManually()
         {
-            /// Gets test name
-            string testScriptName = TestContext.TestName;
+            ///Test name
+            testScriptName = "CreateTechadminAndInstituteManually";
 
             try
             {
@@ -233,11 +243,11 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to verify if user of each type can be created
         /// </summary>
-        [TestMethod,Description("BVT - Test case to create and verify if the Teacher is created successfully")]
+        [Test,Description("BVT - Test case to create and verify if the Teacher is created successfully")]
         public void CreateUsersOfEachRoleType()
         {
-            /// Gets test name
-            string testScriptName = TestContext.TestName;
+            ///Test name
+            testScriptName = "CreateUsersOfEachRoleType";
 
             try
             {
@@ -367,11 +377,11 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to verify if new semester can be created.
         /// </summary>
-        [TestMethod,Description("BVT - Test case to create and verify if semester is created successfully")]
+        [Test,Description("BVT - Test case to create and verify if semester is created successfully")]
         public void CreateSemester()
         {
-             /// Gets test name
-            string testScriptName = TestContext.TestName;
+            ///Test name
+            testScriptName = "CreateSemester";
 
             try
             {
@@ -453,11 +463,11 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test case to verify if New department and subject is created.
         /// </summary>
-        [TestMethod, Description("BVT - Test method to create and verify if new department and subject under that department is created successfully")]
+        [Test, Description("BVT - Test method to create and verify if new department and subject under that department is created successfully")]
         public void CreateDepartmentAndSubject()
         {
-             /// Gets test name
-            string testScriptName = TestContext.TestName;
+            ///Test name
+            testScriptName = "CreateDepartmentAndSubject";
 
             try
             {
@@ -536,7 +546,7 @@ namespace Automation.TestScripts
         /// Test case to verify if new section is created or not.
         /// </summary>
         [Ignore]
-        [TestMethod, Description("BVT - Test method to create and verify new section ")]
+        [Test, Description("BVT - Test method to create and verify new section ")]
         public void CreateNewSection()
         {
             new NotImplementedException();
@@ -545,7 +555,7 @@ namespace Automation.TestScripts
         /// <summary>
         /// Test clean up activities
         /// </summary>
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             try
@@ -566,8 +576,8 @@ namespace Automation.TestScripts
         /// <summary>
         /// Class cleanup activities
         /// </summary>
-        [ClassCleanup]
-        public static void TestClassCleanupClass()
+        [TestFixtureTearDown]
+        public void TestClassCleanupClass()
         {
             try
             {
@@ -601,7 +611,7 @@ namespace Automation.TestScripts
         /// <summary>
         /// Helper method to delete intermidiate config files 
         /// </summary>
-        private static void DeleteConfigDetails()
+        private void DeleteConfigDetails()
         {
             try
             {
@@ -642,3 +652,4 @@ namespace Automation.TestScripts
         #endregion
     }
 }
+
