@@ -11,6 +11,9 @@ using NUnit.Framework;
 
 namespace Automation.TestScripts
 {
+    /// <summary>
+    /// InPods Test Fixture class
+    /// </summary>
     [TestFixture]
     public class TestCases : TestCaseUtil
     {
@@ -35,11 +38,13 @@ namespace Automation.TestScripts
         /// ExecutionStartDateTime
         /// </summary>
         private string ExecutionStartDateTime = String.Empty;
-        private string logFilesDirectory = String.Empty;
-
-        private string reportFilesDirectory = String.Empty;
-        private string serverName = String.Empty;
+        /// <summary>
+        /// configFilesLocation
+        /// </summary>
         private string configFilesLocation = String.Empty;
+        /// <summary>
+        /// embeddedMailContents
+        /// </summary>
         private string embeddedMailContents = String.Empty;
 
         /// Application log instance
@@ -64,26 +69,23 @@ namespace Automation.TestScripts
                 // Loads config data and creates a Singleton object of Configuration and loads data into generic test case variables
                 GetConfigData();
 
-                /// Get debug viewer exe file path
+                // Get debug viewer exe file path
                 configFilesLocation = PrepareConfigureDataFilePath();
 
-                /// Prepare log directory details from xml file
+                // Prepare log directory details from xml file
                 PrepareLogDirectoryPath(configFilesLocation);
 
                 // Initializing Automation report related parameters
                 ExecutionStartDateTime = GetValuesFromXML("TestDataConfig", "ExecutionStartDateTime", configFilesLocation + "\\RunTime.xml");
                 startTimeOfExecution = Convert.ToDateTime(ExecutionStartDateTime.ToString());
-                logFilesDirectory = base.logFileDirectory;
-                reportFilesDirectory = base.reportFileDirectory;
-                serverName = base.server;
-
-                /// Initialize browser instance
+                
+                // Initialize temp instance
                 browser = null;
                 applicationLog = null;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Test Setup Failed - " + e.Message);
+                Console.WriteLine("Test Fixture Setup Failed - " + e.Message);
             }
         }
 
@@ -574,7 +576,7 @@ namespace Automation.TestScripts
         }
 
         /// <summary>
-        /// Class cleanup activities
+        /// Test Fixture Class cleanup activities
         /// </summary>
         [TestFixtureTearDown]
         public void TestClassCleanupClass()
@@ -587,23 +589,23 @@ namespace Automation.TestScripts
                 endTimeOfExecution = DateTime.Now;
 
                 // Generate custome html report form csv logs
-                AutomationReport automationReport = new AutomationReport(logFilesDirectory, reportFilesDirectory, serverName, Convert.ToDateTime(ExecutionStartDateTime.ToString()), DateTime.Now);
+                AutomationReport automationReport = new AutomationReport(base.logFileDirectory, base.reportFileDirectory, base.server, Convert.ToDateTime(ExecutionStartDateTime.ToString()), DateTime.Now);
                 embeddedMailContents = automationReport.CompileReportFromCSV();
 
                 // Prepare path for zip file
-                string zippedFolderPath = reportFilesDirectory + ".zip";
+                string zippedFolderPath = base.reportFileDirectory + ".zip";
 
                 // Zip the custome html report folder
-                FileZipOperations fileZipOperations = new FileZipOperations(reportFilesDirectory, zippedFolderPath, null);
+                FileZipOperations fileZipOperations = new FileZipOperations(base.reportFileDirectory, zippedFolderPath, null);
                 fileZipOperations.ZipFiles();
 
                 // Send Mail/Notification to given mail ids in config file
-                Notifications notifications = new Notifications(reportFilesDirectory, embeddedMailContents);
+                Notifications notifications = new Notifications(base.reportFileDirectory, embeddedMailContents);
                 notifications.SendNotification();
             }
             catch (Exception e)
             {
-                Console.WriteLine("Test Clean not succeed and report not sent" + e.Message);
+                Console.WriteLine("Test Fixture teardown not succeed and report not sent" + e.Message);
             }
         }
 
