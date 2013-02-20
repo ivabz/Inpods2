@@ -16,10 +16,10 @@
       <SuperReports>//ul[@id='menu']/li[3]/a</SuperReports>
       <SuperUserOption>//div[@id='topnav' and @class='topnav']/span[2]/a</SuperUserOption>
     </Super>
+    <Teacher>
+    </Teacher>
     <Student>
-        
     </Student>
-      
     <UserOptionsControls>
       <Profile>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[1]/td/a</Profile>
       <SetPasswordQestionLink>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[2]/td/a</SetPasswordQestionLink>
@@ -33,6 +33,9 @@
       <ContactSupportLinkWP>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[3]/td/a</ContactSupportLinkWP>
       <LogoffLinkWP>//fieldset[@id='signin_menu']/table[@class='usermenu']/tbody/tr[4]/td/a</LogoffLinkWP>
   </UserOptionsControlsWithoutProfileLink>
+    <SectionNamesControl>
+      <SectionNameField>//select[@id='sectionId' and @class='selectSectionClass']</SectionNameField>
+      </SectionNamesControl>
     </MenuTabs>
   </HomePage>
 </ObjectRepository>

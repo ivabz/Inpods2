@@ -1,8 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ObjectRepository>
-  <HomePage>
-    <ManageUserControl>//div[@id='middle']/table/tbody/tr/td[1]/a</ManageUserControl>
-    <ManageCourseControl>//div[@id='middle']/table/tbody/tr/td[2]/a</ManageCourseControl>
-    <ManageConceptsControl>//div[@id='middle']/table/tbody/tr/td[3]/a</ManageConceptsControl>
-  </HomePage>
+  <AdminPage>
+    <Management>
+      <ManageUserControl>//div[@id='middle']/table/tbody/tr/td[1]/a</ManageUserControl>
+      <ManageCourseControl>//div[@id='middle']/table/tbody/tr/td[2]/a</ManageCourseControl>
+      <ManageConceptsControl>//div[@id='middle']/table/tbody/tr/td[3]/a</ManageConceptsControl>
+    </Management>
+    <UploadHomework>
+      <PurposeType>//select[@id='purpose']</PurposeType>
+      <ChooseHomeworkFileButton>//input[@id='uploadFile1']</ChooseHomeworkFileButton>
+      <UploadHomeworkFileButton>//input[@id='submitFile']</UploadHomeworkFileButton>
+    </UploadHomework>
+    <CreateLessons>
+    </CreateLessons>
+    <CreateHomeworkPacket>
+      <AssignFileName>//input[@id='FileName']</AssignFileName>
+      <AssignHomeworkType>//select[@id='SelectedAssignmentType']</AssignHomeworkType>
+      <AssignLessonName>//select[@id='lessonId']</AssignLessonName>
+      <AssignHomeworkButton>//fieldset[@id='Assignment']/table/tbody/tr[3]/td[1]/input</AssignHomeworkButton>
+    </CreateHomeworkPacket>
+    <UploadFiles>
+    </UploadFiles>
+    <UploadHomeworkExcel>
+      <UploadHomeworkType>//select[@id='ExcelAssignmentType']</UploadHomeworkType>
+      <UploadLessonName>//select[@id='lessonId']</UploadLessonName>
+      <UploadExcelButton>//input[@id='assignmentExcel']</UploadExcelButton>
+      <AssignExcelButton>//fieldset[@id='ExcelAssignment']/table/tbody/tr[3]/td[1]/input</AssignExcelButton>
+    </UploadHomeworkExcel>
+    <DeleteAssignment>
+    </DeleteAssignment>
+    <WriteNotes>
+    </WriteNotes>
+    <ExamDetails>
+      <ExamIdField>//input[@id='examId']</ExamIdField>
+      <ChooseExamFileField>//input[@id='examDetails']</ChooseExamFileField>
+      <ImportExamDetailsButton>//fieldset[@id='ImportExamDetails']/table/tbody/tr[3]/td[1]/input</ImportExamDetailsButton>
+    </ExamDetails>
+    <AddEvent>      
+    </AddEvent>
+  </AdminPage>
 </ObjectRepository>
+

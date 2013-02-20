@@ -10,6 +10,8 @@ namespace Automation.Development.Pages.SchoolTech
 {
     public class SchoolTechAdminPage : SchoolTechNavigationMenu
     {
+        #region User Controls
+
         /// <summary>
         /// User Management : 
         /// Manage user control
@@ -28,6 +30,90 @@ namespace Automation.Development.Pages.SchoolTech
         /// </summary>
         public IWebElement ManageConcepts { get; private set; }
 
+        /// <summary>
+        /// Gets PurposeType Field
+        /// Upload Homework file:
+        /// </summary>
+        public IWebElement PurposeType { get; private set; }
+
+        /// <summary>
+        /// Gets ChooseHomeworkFileButton
+        /// Upload Homework file:
+        /// </summary>
+        public IWebElement ChooseHomeworkFileButton { get; private set; }
+
+        /// <summary>
+        /// Gets UploadHomeworkFileButton
+        /// Upload Homework file:
+        /// </summary>
+        public IWebElement UploadHomeworkFileButton { get; private set; }
+
+        /// <summary>
+        /// Gets AssignFileName
+        /// Assign Bunch of Homeworks
+        /// </summary>
+        public IWebElement AssignFileName { get; private set; }
+
+        /// <summary>
+        /// Gets AssignHomeworkType
+        /// Assign Bunch of Homeworks
+        /// </summary>
+        public IWebElement AssignHomeworkType { get; private set; }
+
+        /// <summary>
+        /// Gets AssignLessonName
+        /// Assign Bunch of Homeworks
+        /// </summary>
+        public IWebElement AssignLessonName { get; private set; }
+
+        /// <summary>
+        /// Gets AssignHomeworkButton
+        /// Assign Bunch of Homeworks
+        /// </summary>
+        public IWebElement AssignHomeworkButton { get; private set; }
+
+        /// <summary>
+        /// Gets UploadHomeworkType
+        /// Upload Homework Excel:
+        /// </summary>
+        public IWebElement UploadHomeworkType { get; private set; }
+
+        /// <summary>
+        /// Gets UploadLessonName
+        /// Upload Homework Excel:
+        /// </summary>
+        public IWebElement UploadLessonName { get; private set; }
+
+        /// <summary>
+        /// Gets UploadExcelButton
+        /// Upload Homework Excel:
+        /// </summary>
+        public IWebElement UploadExcelButton { get; private set; }
+
+        /// <summary>
+        /// Gets AssignExcelButton
+        /// Upload Homework Excel:
+        /// </summary>
+        public IWebElement AssignExcelButton { get; private set; }
+
+        /// <summary>
+        /// Gets ExamIdField
+        /// Exam details:
+        /// </summary>
+        public IWebElement ExamIdField { get; private set; }
+
+        /// <summary>
+        /// Gets ChooseExamFileField
+        /// Exam details:
+        /// </summary>
+        public IWebElement ChooseExamFileField { get; private set; }
+
+        /// <summary>
+        /// Gets ImportExamDetailsButton
+        /// Exam details:
+        /// </summary>
+        public IWebElement ImportExamDetailsButton { get; private set; } 
+        #endregion
 
         /// <summary>
         /// SchoolTech Object Repository

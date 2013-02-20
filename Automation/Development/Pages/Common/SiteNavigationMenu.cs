@@ -3,6 +3,7 @@ using Automation.Development.Browsers;
 using OpenQA.Selenium;
 using System.Diagnostics;
 using Automation.TestScripts;
+using OpenQA.Selenium.Support.UI;
 
 namespace Automation.Development.Pages.Common
 {
@@ -133,6 +134,18 @@ namespace Automation.Development.Pages.Common
             get { return logOffLinkControl; }
             private set { logOffLinkControl = value; }
         }
+
+        private IWebElement sectionNameField;
+
+        /// <summary>
+        /// Gets Setion Name field
+        /// </summary>
+        public IWebElement SectionNameField
+        {
+            get { return sectionNameField; }
+            private set { sectionNameField = value; }
+        }
+        
         #endregion
 
         public ObjectRepository objectRepository { get; private set; }
@@ -261,6 +274,17 @@ namespace Automation.Development.Pages.Common
                 }
 
                 UserOptionControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SchooltechUserOption"]);
+
+                // Section Name field
+
+                bool isSectionNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SectionNameField"]);
+
+                if (!isSectionNameField)
+                {
+                    throw new Exception("SectionNameField");
+                }
+
+                SectionNameField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SectionNameField"]);
             }
             catch (Exception exception)
             {
@@ -324,6 +348,17 @@ namespace Automation.Development.Pages.Common
 
             ReportTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Reports"]);
 
+            // Section Name field
+
+            bool isSectionNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SectionNameField"]);
+
+            if (!isSectionNameField)
+            {
+                throw new Exception("SectionNameField");
+            }
+
+            SectionNameField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SectionNameField"]);
+
             this.LocateUserOptionControls();
         }
 
@@ -383,6 +418,17 @@ namespace Automation.Development.Pages.Common
 
             ReportTabControl = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["Reports"]);
 
+            // Section Name field
+
+            bool isSectionNameField = this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SectionNameField"]);
+
+            if (!isSectionNameField)
+            {
+                throw new Exception("SectionNameField");
+            }
+
+            SectionNameField = this.FindControlByXPath((string)objectRepository.ObjectRepositoryTable["SectionNameField"]);
+
             this.LocateUserOptionControls();
         }
 
@@ -392,7 +438,18 @@ namespace Automation.Development.Pages.Common
         #region Public functions
                 
         #endregion 
-
+        /// <summary>
+        /// Method to Select Section name from SectionName dropdown.
+        /// </summary>
+        public void SelectSectionName(string sectionName)
+        {
+            // Select element
+            if (this.WaitForElement("XPATH", (string)objectRepository.ObjectRepositoryTable["SectionNameField"]))
+            {
+                var Section = new SelectElement(SectionNameField);
+                Section.SelectByText(sectionName);
+            }
+        }
         #region Helper methods
 
         /// <summary>
