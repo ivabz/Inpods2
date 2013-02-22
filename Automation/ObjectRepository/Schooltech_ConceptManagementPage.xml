@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ObjectRepository>
-  <HomePage>
-  </HomePage>
+  <ConceptManagementPage>
+    <ManageConcept>
+      <ConceptNameField>//form[@id='form0']/input[2]</ConceptNameField>
+      <CreateConceptButton>//form[@id='form0']/input[3]</CreateConceptButton>
+      <ChooseConceptFileButton>//input[@id='conceptsFile']</ChooseConceptFileButton>
+      <UploadConceptsFileButton>//div[@id='middle']/form[1]/table/tbody/tr[2]/td/input</UploadConceptsFileButton>
+      <DownloadConceptsButton>//div[@id='middle']/form[2]/table/tbody/tr/td/input</DownloadConceptsButton>
+    </ManageConcept>
+    <ParantConcept>
+      <SelectParentConceptField>//label[@id='ActivityItemId' and @class='pointer']</SelectParentConceptField>
+      <ParantConceptRoot>//div[@id='ActivityItemId' and @class='divConceptTree divConceptTreeShow']/ul/li/span/a[@class='dynatree-title']</ParantConceptRoot>
+    </ParantConcept>
+  </ConceptManagementPage>
 </ObjectRepository>
-<!--Add all control defination for Concept management page-->

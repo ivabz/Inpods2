@@ -123,11 +123,12 @@
     <Compile Include="Development\Pages\Common\LoginPage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Development\Pages\SchoolTech\ConceptsManagementPage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\SchoolTechConceptsManagementPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechCourseManagementPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateCoursePage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechAdminPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechHomePage.cs" />
+    <Compile Include="Development\Pages\SchoolTech\SchoolTechManageQuestionBankPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechNavigationMenu.cs" />
     <Compile Include="Development\Pages\SchoolTech\CreateSemesterPage.cs" />
     <Compile Include="Development\Pages\SchoolTech\SchoolTechUserManagementPage.cs" />
@@ -182,7 +183,9 @@
     <Content Include="ObjectRepository\Common_ContactSupportPage.xml" />
     <Content Include="ObjectRepository\Common_ProfilePage.xml" />
     <Content Include="ObjectRepository\Common_SetPasswordQuestionPage.xml" />
-    <Content Include="ObjectRepository\Common_SiteNavPage.xml" />
+    <Content Include="ObjectRepository\Common_SiteNavPage.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ObjectRepository\Schooltech_HomePage.xml" />
     <Content Include="ObjectRepository\Student_HomePage.xml" />
     <Content Include="ObjectRepository\Teacher_HomePage.xml" />

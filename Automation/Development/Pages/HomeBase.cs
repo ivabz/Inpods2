@@ -86,8 +86,11 @@ namespace Automation.Development.Pages
             [Description("CreateCoursePage")]
             CreateCoursePage = 15,
             [Description("CreateInstitutePage")]
-            CreateInstitutePage = 16
-
+            CreateInstitutePage = 16,
+            [Description("ManageQuestionBankPage")]
+            QuestionBankManagementPage = 17,
+            [Description("Assign")]
+            QuestionBankManagementPage = 17
         
         }
 
